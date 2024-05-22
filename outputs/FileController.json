@@ -1,0 +1,78 @@
+[
+    {
+        "controllerName": "FileUploadController",
+        "baseRoute": "/api/CUS/FILE",
+        "routes": [
+            {
+                "route": "/api/CUS/FILE/UploadImage",
+                "httpMethod": "POST",
+                "action": "Post_UploadImage",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/FileUpload/{id:int}",
+                "httpMethod": "POST",
+                "action": "Post_FileUpload",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/NhanSu",
+                "httpMethod": "GET",
+                "action": "Get_NhanSu",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/NhanSu",
+                "httpMethod": "POST",
+                "action": "Post_NhanSu",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/BaoCaoTienDoNghienCuu",
+                "httpMethod": "GET",
+                "action": "Get_BaoCaoTienDoNghienCuu",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/BaoCaoNangSuatKhoaHoc",
+                "httpMethod": "GET",
+                "action": "Get_BaoCaoNangSuatKhoaHoc",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/HoiNghiHoiThao",
+                "httpMethod": "GET",
+                "action": "Get_HoiNghiHoiThao",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/CUS/FILE/UploadImageCustom",
+                "httpMethod": "POST",
+                "action": "Post_UploadImageCusto",
+                "authRequired": false,
+                "roles": []
+            }
+        ],
+        "dependencies": [
+            {
+                "name": "db",
+                "type": "DbContext"
+            },
+            {
+                "name": "BS_CUS_DOC_File",
+                "type": "Business"
+            }
+        ],
+        "modelsUsed": [
+            "DTO_CUS_DOC_File",
+            "DTO_WEB_BaiViet"
+        ]
+    }
+]

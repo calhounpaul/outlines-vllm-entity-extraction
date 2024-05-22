@@ -1,0 +1,56 @@
+[
+    {
+        "controllerName": "TakeQuizApiController",
+        "baseRoute": "/api",
+        "routes": [
+            {
+                "route": "/ShowNumbers",
+                "httpMethod": "GET",
+                "action": "ShowNumbers",
+                "authRequired": true,
+                "roles": []
+            },
+            {
+                "route": "/Menu/{studentid}/{moduleId}",
+                "httpMethod": "GET",
+                "action": "Menu",
+                "authRequired": true,
+                "roles": []
+            },
+            {
+                "route": "/GetSelectSubject/{moduleId}/{email}",
+                "httpMethod": "GET",
+                "action": "GetSelectSubject",
+                "authRequired": true,
+                "roles": []
+            },
+            {
+                "route": "/Exam/{questionNo}/{moduleId}/{studentid}",
+                "httpMethod": "GET",
+                "action": "Exam",
+                "authRequired": true,
+                "roles": []
+            },
+            {
+                "route": "/SubmitExam/{studentId}/{topicId}/{examType}",
+                "httpMethod": "GET",
+                "action": "SubmitExam",
+                "authRequired": true,
+                "roles": []
+            },
+            {
+                "route": "/ExamIndex/{studentId}/{topicId}/{score}",
+                "httpMethod": "GET",
+                "action": "ExamIndex",
+                "authRequired": true,
+                "roles": []
+            }
+        ],
+        "dependencies": [],
+        "modelsUsed": [
+            "CodedenimWebApp.Models.ApplicationUser",
+            "CodedenimWebApp.Models.StudentTopicQuiz",
+            "CodedenimWebApp.Models.TopicQuiz"
+        ]
+    }
+]

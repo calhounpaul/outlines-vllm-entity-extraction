@@ -1,0 +1,73 @@
+[
+    {
+        "controllerName": "RequestsController",
+        "baseRoute": "/api/Requests",
+        "routes": [
+            {
+                "route": "/GetRecentPendingRequests",
+                "httpMethod": "GET",
+                "action": "GetRecentPendingRequests",
+                "authRequired": true,
+                "roles": [
+                    "Agent"
+                ]
+            },
+            {
+                "route": "/",
+                "httpMethod": "GET",
+                "action": "GetRequests",
+                "authRequired": true,
+                "roles": [
+                    "Agent",
+                    "Member"
+                ]
+            },
+            {
+                "route": "/{id}",
+                "httpMethod": "GET",
+                "action": "GetRequest",
+                "authRequired": true,
+                "roles": [
+                    "Agent",
+                    "Member"
+                ]
+            },
+            {
+                "route": "/{id}",
+                "httpMethod": "PUT",
+                "action": "PutRequest",
+                "authRequired": true,
+                "roles": [
+                    "Member"
+                ]
+            },
+            {
+                "route": "/",
+                "httpMethod": "POST",
+                "action": "PostRequest",
+                "authRequired": true,
+                "roles": [
+                    "Member"
+                ]
+            },
+            {
+                "route": "/{id}",
+                "httpMethod": "DELETE",
+                "action": "DeleteRequest",
+                "authRequired": true,
+                "roles": [
+                    "Member"
+                ]
+            }
+        ],
+        "dependencies": [
+            {
+                "name": "ApplicationDbContext",
+                "type": "DbContext"
+            }
+        ],
+        "modelsUsed": [
+            "Request"
+        ]
+    }
+]

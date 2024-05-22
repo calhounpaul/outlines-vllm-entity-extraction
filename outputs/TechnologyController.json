@@ -1,0 +1,58 @@
+[
+    {
+        "controllerName": "TechnologyController",
+        "baseRoute": "api/Technology",
+        "routes": [
+            {
+                "route": "/",
+                "httpMethod": "GET",
+                "action": "GetTechnologies",
+                "authRequired": true,
+                "roles": []
+            },
+            {
+                "route": "/",
+                "httpMethod": "POST",
+                "action": "PostCreate",
+                "authRequired": true,
+                "roles": []
+            }
+        ],
+        "dependencies": [
+            {
+                "name": "ApplicationDbContext",
+                "type": "Repository"
+            },
+            {
+                "name": "IdentityExtensions",
+                "type": "Service"
+            },
+            {
+                "name": "LiveHackDb.Models",
+                "type": "Models"
+            },
+            {
+                "name": "LiveHack.Models.ViewModels",
+                "type": "ViewModels"
+            },
+            {
+                "name": "LiveHack.Models.BindingModels",
+                "type": "BindingModels"
+            },
+            {
+                "name": "Microsoft.AspNet.Identity",
+                "type": "Identity"
+            },
+            {
+                "name": "System.Net.Http",
+                "type": "HttpClient"
+            }
+        ],
+        "modelsUsed": [
+            "Technology",
+            "Chats",
+            "Users",
+            "Message"
+        ]
+    }
+]

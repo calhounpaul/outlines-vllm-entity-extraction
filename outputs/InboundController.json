@@ -1,0 +1,24 @@
+[
+    {
+        "controllerName": "InboundController",
+        "baseRoute": "/",
+        "routes": [
+            {
+                "route": "/inbound",
+                "httpMethod": "Post",
+                "action": "InboundParse",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/",
+                "httpMethod": "Get",
+                "action": "Index",
+                "authRequired": false,
+                "roles": []
+            }
+        ],
+        "dependencies": [],
+        "modelsUsed": []
+    }
+]

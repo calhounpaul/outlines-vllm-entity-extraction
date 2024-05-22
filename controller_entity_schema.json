@@ -1,0 +1,137 @@
+{
+    "title": "APIEntity",
+    "type": "object",
+    "properties": {
+        "controllerName": {
+            "title": "Controller Name",
+            "type": "string",
+            "description": "The name of the controller."
+        },
+        "baseRoute": {
+            "title": "Base Route",
+            "type": "string",
+            "description": "The base route for the controller."
+        },
+        "routes": {
+            "title": "Routes",
+            "type": "array",
+            "description": "An array of route objects, each containing the route, HTTP method, and action.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "route": {
+                        "title": "Route",
+                        "type": "string",
+                        "description": "The URL route for the API endpoint."
+                    },
+                    "httpMethod": {
+                        "title": "HTTP Method",
+                        "type": "string",
+                        "description": "The HTTP method used for the API endpoint (e.g., GET, POST)."
+                    },
+                    "action": {
+                        "title": "Action",
+                        "type": "string",
+                        "description": "The action method that handles the request for this route."
+                    },
+                    "authRequired": {
+                        "title": "Authentication Required",
+                        "type": "boolean",
+                        "description": "Indicates if the route requires authentication."
+                    },
+                    "roles": {
+                        "title": "Roles",
+                        "type": "array",
+                        "description": "An array of roles allowed to access this route.",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "dependencies": {
+            "title": "Dependencies",
+            "type": "array",
+            "description": "An array of dependencies that the controller relies on, including the name and type of the dependency.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the dependency."
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string",
+                        "description": "The type or class of the dependency."
+                    }
+                }
+            }
+        },
+        "modelsUsed": {
+            "title": "Models Used",
+            "type": "array",
+            "description": "An array of model names that are used within the controller.",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": ["controllerName", "baseRoute", "routes"],
+    "definitions": {
+        "Route": {
+            "title": "Route",
+            "type": "object",
+            "description": "An object representing a single API route.",
+            "properties": {
+                "route": {
+                    "title": "Route",
+                    "type": "string",
+                    "description": "The URL route for the API endpoint."
+                },
+                "httpMethod": {
+                    "title": "HTTP Method",
+                    "type": "string",
+                    "description": "The HTTP method used for the API endpoint (e.g., GET, POST)."
+                },
+                "action": {
+                    "title": "Action",
+                    "type": "string",
+                    "description": "The action method that handles the request for this route."
+                },
+                "authRequired": {
+                    "title": "Authentication Required",
+                    "type": "boolean",
+                    "description": "Indicates if the route requires authentication."
+                },
+                "roles": {
+                    "title": "Roles",
+                    "type": "array",
+                    "description": "An array of roles allowed to access this route.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Dependency": {
+            "title": "Dependency",
+            "type": "object",
+            "description": "An object representing a dependency required by the controller.",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "description": "The name of the dependency."
+                },
+                "type": {
+                    "title": "Type",
+                    "type": "string",
+                    "description": "The type or class of the dependency."
+                }
+            }
+        }
+    }
+}

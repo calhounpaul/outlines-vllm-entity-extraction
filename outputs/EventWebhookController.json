@@ -1,0 +1,24 @@
+[
+    {
+        "controllerName": "EventWebhookController",
+        "baseRoute": "/api/events",
+        "routes": [
+            {
+                "route": "/events",
+                "httpMethod": "POST",
+                "action": "Events",
+                "authRequired": false,
+                "roles": []
+            }
+        ],
+        "dependencies": [
+            {
+                "name": "EventWebhook.Parser",
+                "type": "Service"
+            }
+        ],
+        "modelsUsed": [
+            "EventWebhook.Models.Event"
+        ]
+    }
+]

@@ -1,0 +1,31 @@
+[
+    {
+        "controllerName": "EmailController",
+        "baseRoute": "/api/email",
+        "routes": [
+            {
+                "route": "/api/email/send",
+                "httpMethod": "POST",
+                "action": "Send",
+                "authRequired": false,
+                "roles": []
+            },
+            {
+                "route": "/api/email/send",
+                "httpMethod": "GET",
+                "action": "Send",
+                "authRequired": false,
+                "roles": []
+            }
+        ],
+        "dependencies": [
+            {
+                "name": "SendGridEmailService",
+                "type": "Service"
+            }
+        ],
+        "modelsUsed": [
+            "EmailContract"
+        ]
+    }
+]

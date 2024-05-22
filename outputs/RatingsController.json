@@ -1,0 +1,38 @@
+[
+    {
+        "controllerName": "RatingsController",
+        "baseRoute": "/ratings",
+        "routes": [
+            {
+                "route": "",
+                "httpMethod": "POST",
+                "action": "PeformRating",
+                "authRequired": true,
+                "roles": [
+                    "Admin",
+                    "Moderator"
+                ]
+            },
+            {
+                "route": "product/{id}",
+                "httpMethod": "GET",
+                "action": "GetRatingsForWorkspace",
+                "authRequired": false,
+                "roles": [
+                    "User"
+                ]
+            },
+            {
+                "route": "me/product/{id}",
+                "httpMethod": "GET",
+                "action": "GetMyRatingForWorkspace",
+                "authRequired": true,
+                "roles": []
+            }
+        ],
+        "modelsUsed": [
+            "FlexWork.Models.Rating",
+            "FlexWork.Models.User"
+        ]
+    }
+]
