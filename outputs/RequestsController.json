@@ -1,73 +1,226 @@
 [
     {
-        "controllerName": "RequestsController",
-        "baseRoute": "/api/Requests",
-        "routes": [
-            {
-                "route": "/GetRecentPendingRequests",
-                "httpMethod": "GET",
-                "action": "GetRecentPendingRequests",
-                "authRequired": true,
-                "roles": [
-                    "Agent"
-                ]
-            },
-            {
-                "route": "/",
-                "httpMethod": "GET",
-                "action": "GetRequests",
-                "authRequired": true,
-                "roles": [
-                    "Agent",
-                    "Member"
-                ]
-            },
-            {
-                "route": "/{id}",
-                "httpMethod": "GET",
-                "action": "GetRequest",
-                "authRequired": true,
-                "roles": [
-                    "Agent",
-                    "Member"
-                ]
-            },
-            {
-                "route": "/{id}",
-                "httpMethod": "PUT",
-                "action": "PutRequest",
-                "authRequired": true,
-                "roles": [
-                    "Member"
-                ]
-            },
-            {
-                "route": "/",
-                "httpMethod": "POST",
-                "action": "PostRequest",
-                "authRequired": true,
-                "roles": [
-                    "Member"
-                ]
-            },
-            {
-                "route": "/{id}",
-                "httpMethod": "DELETE",
-                "action": "DeleteRequest",
-                "authRequired": true,
-                "roles": [
-                    "Member"
-                ]
-            }
-        ],
-        "dependencies": [
-            {
-                "name": "ApplicationDbContext",
-                "type": "DbContext"
-            }
-        ],
-        "modelsUsed": [
-            "Request"
-        ]
+        "declarationsAndDefinitions": {
+            "classDeclarations": [
+                {
+                    "name": "RequestsController",
+                    "type": "class",
+                    "description": "A controller class for the Requests API endpoints for the Property4U application."
+                },
+                {
+                    "name": "ApplicationDbContext",
+                    "type": "class",
+                    "description": "The database context for the Property4U application."
+                },
+                {
+                    "name": "IdentitySample.Models.Request",
+                    "type": "class",
+                    "description": "The Request model class for the IdentitySample project."
+                },
+                {
+                    "name": "Property4U.Models.Request",
+                    "type": "class",
+                    "description": "The Request model class for the Property4U project."
+                }
+            ],
+            "methodDeclarations": [
+                {
+                    "name": "GetRecentPendingRequests",
+                    "type": "method",
+                    "description": "Retrieves a list of recent pending requests for the current user, who must be an Agent or Developer.",
+                    "httpMethod": "GET",
+                    "route": "api/GetRecentPendingRequests"
+                },
+                {
+                    "name": "GetRequests",
+                    "type": "method",
+                    "description": "Retrieves a list of all requests for the current user, based on their role (Member, Agent, or Developer).",
+                    "httpMethod": "GET",
+                    "route": "api/Requests"
+                },
+                {
+                    "name": "GetRequest",
+                    "type": "method",
+                    "description": "Retrieves a specific request with the given ID.",
+                    "httpMethod": "GET",
+                    "route": "api/Requests/{id}"
+                },
+                {
+                    "name": "PutRequest",
+                    "type": "method",
+                    "description": "Updates a specific request with the given ID.",
+                    "httpMethod": "PUT",
+                    "route": "api/Requests/{id}"
+                },
+                {
+                    "name": "PostRequest",
+                    "type": "method",
+                    "description": "Creates a new request and adds it to the database.",
+                    "httpMethod": "POST",
+                    "route": "api/Requests"
+                },
+                {
+                    "name": "DeleteRequest",
+                    "type": "method",
+                    "description": "Deletes a specific request with the given ID.",
+                    "httpMethod": "DELETE",
+                    "route": "api/Requests/{id}"
+                }
+            ],
+            "propertyDeclarations": [
+                {
+                    "name": "db",
+                    "type": "property",
+                    "description": "An instance of the ApplicationDbContext class for database operations.",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "strCurrentUserId",
+                    "type": "property",
+                    "description": "A string variable that stores the ID of the currently logged-in user.",
+                    "accessibility": "Private"
+                }
+            ],
+            "constantDeclarations": [],
+            "enumDeclarations": []
+        },
+        "httpMethodsAndRoutes": {
+            "methods": [
+                {
+                    "name": "GET",
+                    "type": "httpMethod",
+                    "description": "Retrieve data from the server.",
+                    "httpMethod": "GET",
+                    "route": "api/*"
+                },
+                {
+                    "name": "PUT",
+                    "type": "httpMethod",
+                    "description": "Update data on the server.",
+                    "httpMethod": "PUT",
+                    "route": "api/*"
+                },
+                {
+                    "name": "POST",
+                    "type": "httpMethod",
+                    "description": "Create new data on the server.",
+                    "httpMethod": "POST",
+                    "route": "api/*"
+                },
+                {
+                    "name": "DELETE",
+                    "type": "httpMethod",
+                    "description": "Delete data from the server.",
+                    "httpMethod": "DELETE",
+                    "route": "api/*"
+                }
+            ],
+            "routes": [
+                "api/GetRecentPendingRequests",
+                "api/Requests",
+                "api/Requests/{id}",
+                "api/Requests"
+            ]
+        },
+        "dataAccessAndManipulation": {
+            "dataOperations": [
+                {
+                    "name": "db.Requests.Where(...).ToList()",
+                    "type": "data retrieval",
+                    "description": "Retrieves a list of Request objects based on the given criteria.",
+                    "operationType": "Retrieve",
+                    "target": "db.Requests"
+                },
+                {
+                    "name": "db.Entry(request).State = EntityState.Modified;",
+                    "type": "data manipulation",
+                    "description": "Updates the state of the given Request object to EntityState.Modified.",
+                    "operationType": "Update",
+                    "target": "db.Entry(request)"
+                },
+                {
+                    "name": "db.Requests.Add(request);",
+                    "type": "data manipulation",
+                    "description": "Adds a new Request object to the database.",
+                    "operationType": "Insert",
+                    "target": "db.Requests"
+                },
+                {
+                    "name": "db.Requests.Remove(request);",
+                    "type": "data manipulation",
+                    "description": "Removes a Request object from the database.",
+                    "operationType": "Delete",
+                    "target": "db.Requests"
+                }
+            ]
+        },
+        "errorHandlingAndValidation": {
+            "errorHandling": [
+                {
+                    "name": "BadRequest",
+                    "type": "error",
+                    "description": "Returns a response with status code 400 Bad Request when an error occurs.",
+                    "mechanism": "CustomException"
+                },
+                {
+                    "name": "NotFound",
+                    "type": "error",
+                    "description": "Returns a response with status code 404 Not Found when a requested resource is not found.",
+                    "mechanism": "CustomException"
+                }
+            ],
+            "validation": [
+                {
+                    "name": "ModelState.IsValid",
+                    "type": "validation",
+                    "description": "Checks if the input data is valid against the specified model state.",
+                    "validationType": "Input"
+                }
+            ]
+        },
+        "configurationAndServices": {
+            "configurations": [
+                {
+                    "name": "Authorize(Roles = \"Developer, Agent\")",
+                    "type": "method configuration",
+                    "description": "Specifies that the given method requires the user to have the Developer or Agent role.",
+                    "setting": "AppSettings"
+                },
+                {
+                    "name": "Authorize(Roles = \"Developer, Agent, Member\")",
+                    "type": "method configuration",
+                    "description": "Specifies that the given method requires the user to have the Developer, Agent, or Member role.",
+                    "setting": "AppSettings"
+                },
+                {
+                    "name": "Authorize(Roles = \"Developer, Member\")",
+                    "type": "method configuration",
+                    "description": "Specifies that the given method requires the user to have the Developer or Member role.",
+                    "setting": "AppSettings"
+                }
+            ]
+        },
+        "miscellaneous": {
+            "items": [
+                {
+                    "name": "User.Identity.GetUserId();",
+                    "type": "function call",
+                    "description": "Retrieves the ID of the currently logged-in user.",
+                    "itemType": "UtilityMethod"
+                },
+                {
+                    "name": "User.IsInRole(...);",
+                    "type": "function call",
+                    "description": "Checks if the currently logged-in user is in the given role.",
+                    "itemType": "UtilityMethod"
+                },
+                {
+                    "name": "await db.SaveChangesAsync();",
+                    "type": "function call",
+                    "description": "Saves changes to the database and returns a Task object.",
+                    "itemType": "UtilityMethod"
+                }
+            ]
+        }
     }
 ]

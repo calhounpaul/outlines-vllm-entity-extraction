@@ -1,24 +1,107 @@
 [
     {
-        "controllerName": "EventWebhookController",
-        "baseRoute": "/api/events",
-        "routes": [
-            {
-                "route": "/events",
-                "httpMethod": "POST",
-                "action": "Events",
-                "authRequired": false,
-                "roles": []
-            }
-        ],
-        "dependencies": [
-            {
-                "name": "EventWebhook.Parser",
-                "type": "Service"
-            }
-        ],
-        "modelsUsed": [
-            "EventWebhook.Models.Event"
-        ]
+        "declarationsAndDefinitions": {
+            "classDeclarations": [
+                {
+                    "name": "EventWebhookController",
+                    "type": "Class",
+                    "description": "The EventWebhookController class, inheriting from Controller, to process webhook events for the specified API endpoints via the ASP.NET Core MVC framework."
+                },
+                {
+                    "name": "Controller",
+                    "type": "Class",
+                    "description": "The base class of the EventWebhookController class, provided by the ASP.NET Core MVC framework."
+                }
+            ],
+            "methodDeclarations": [
+                {
+                    "name": "Index",
+                    "type": "Method",
+                    "description": "An HTTP GET method that returns the Index view of the current context.",
+                    "httpMethod": "GET",
+                    "route": "/"
+                },
+                {
+                    "name": "Events",
+                    "type": "Method",
+                    "description": "An HTTP POST method that asynchronously processes the incoming request body using EventParser and returns an OK response.",
+                    "httpMethod": "POST",
+                    "route": "/events"
+                }
+            ],
+            "propertyDeclarations": [],
+            "constantDeclarations": [],
+            "enumDeclarations": []
+        },
+        "httpMethodsAndRoutes": {
+            "methods": [
+                {
+                    "name": "GET",
+                    "type": "Method",
+                    "description": "HTTP GET",
+                    "httpMethod": "GET",
+                    "route": "/"
+                },
+                {
+                    "name": "POST",
+                    "type": "Method",
+                    "description": "HTTP POST",
+                    "httpMethod": "POST",
+                    "route": "/events"
+                }
+            ],
+            "routes": [
+                "/",
+                "/events"
+            ]
+        },
+        "dataAccessAndManipulation": {
+            "dataOperations": [
+                {
+                    "name": "await EventParser.ParseAsync(Request.Body)",
+                    "type": "MethodCall",
+                    "description": "Asynchronously parsing the incoming request body using EventParser and returning an IEnumerable<Event> collection.",
+                    "operationType": "Retrieve",
+                    "target": "EventParser.ParseAsync(Request.Body)"
+                }
+            ]
+        },
+        "errorHandlingAndValidation": {
+            "errorHandling": [
+                {
+                    "name": "return Ok()",
+                    "type": "MethodCall",
+                    "description": "Returning an OK response from the Events method.",
+                    "mechanism": "CustomException"
+                }
+            ],
+            "validation": []
+        },
+        "configurationAndServices": {
+            "configurations": [
+                {
+                    "name": "[Route(\"/\")]",
+                    "type": "Attribute",
+                    "description": "Configures the controller route for the index page to be '/'.",
+                    "setting": "EnvironmentVariables"
+                },
+                {
+                    "name": "[Route(\"/events\")]",
+                    "type": "Attribute",
+                    "description": "Configures the controller route for the events processing to be '/events'.",
+                    "setting": "EnvironmentVariables"
+                }
+            ]
+        },
+        "miscellaneous": {
+            "items": [
+                {
+                    "name": "Any other class-level imports (using statements)",
+                    "type": "Imports",
+                    "description": "Imports for the necessary namespaces to make the program work: EventWebhook.Models, EventWebhook.Parser, Microsoft.AspNetCore.Mvc, System.Collections.Generic, System.Threading.Tasks.",
+                    "itemType": "Logging"
+                }
+            ]
+        }
     }
 ]

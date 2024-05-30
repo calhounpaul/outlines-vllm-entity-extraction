@@ -1,12 +1,4 @@
-﻿//------------------------------------------------------------------------------
-// 
-//    www.codeart.vn
-//    hungvq@live.com
-//    (+84)908.061.119
-// 
-//------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -31,7 +23,7 @@ using Syncfusion.OfficeChart;
 
 
 using RazorEngine;
-using RazorEngine.Templating; // Dont forget to include this.
+using RazorEngine.Templating;
 using Microsoft.AspNet.Identity;
 
 using OfficeOpenXml;

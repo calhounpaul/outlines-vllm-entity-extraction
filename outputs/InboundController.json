@@ -1,24 +1,113 @@
 [
     {
-        "controllerName": "InboundController",
-        "baseRoute": "/",
-        "routes": [
-            {
-                "route": "/inbound",
-                "httpMethod": "Post",
-                "action": "InboundParse",
-                "authRequired": false,
-                "roles": []
-            },
-            {
-                "route": "/",
-                "httpMethod": "Get",
-                "action": "Index",
-                "authRequired": false,
-                "roles": []
-            }
-        ],
-        "dependencies": [],
-        "modelsUsed": []
+        "declarationsAndDefinitions": {
+            "classDeclarations": [
+                {
+                    "name": "InboundController",
+                    "type": "public class",
+                    "description": "API controller class for InboundController"
+                },
+                {
+                    "name": "Controller",
+                    "type": "Controller",
+                    "description": "Base class for ASP.NET Core controllers"
+                }
+            ],
+            "methodDeclarations": [
+                {
+                    "name": "Index",
+                    "type": "public IActionResult",
+                    "description": "A GET method that returns a view when invoked",
+                    "httpMethod": "GET",
+                    "route": "/"
+                },
+                {
+                    "name": "InboundParse",
+                    "type": "public IActionResult",
+                    "description": "A POST method that processes an inbound request and calls Log with the received data",
+                    "httpMethod": "POST",
+                    "route": "/inbound"
+                }
+            ],
+            "propertyDeclarations": [],
+            "constantDeclarations": [],
+            "enumDeclarations": []
+        },
+        "httpMethodsAndRoutes": {
+            "methods": [
+                {
+                    "name": "GET",
+                    "type": " HttpGet",
+                    "description": "A method for handling GET HTTP requests",
+                    "httpMethod": "GET",
+                    "route": "/"
+                },
+                {
+                    "name": "POST",
+                    "type": "HttpPost",
+                    "description": "A method for handling POST HTTP requests",
+                    "httpMethod": "POST",
+                    "route": "/inbound"
+                }
+            ],
+            "routes": [
+                "/",
+                "/inbound"
+            ]
+        },
+        "dataAccessAndManipulation": {
+            "dataOperations": [
+                {
+                    "name": "InboundWebhookParser",
+                    "type": "InboundWebhookParser",
+                    "description": "A data parser class used for Inbound Parse",
+                    "operationType": "Retrieve",
+                    "target": "Request.Body"
+                },
+                {
+                    "name": "_inboundParser",
+                    "type": "InboundWebhookParser",
+                    "description": "An instance of InboundWebhookParser",
+                    "operationType": "Retrieve",
+                    "target": "new InboundWebhookParser(Request.Body)"
+                },
+                {
+                    "name": "inboundEmail",
+                    "type": "var",
+                    "description": "A variable holding the parsed email data",
+                    "operationType": "Retrieve",
+                    "target": "_inboundParser.Parse()"
+                }
+            ]
+        },
+        "errorHandlingAndValidation": {
+            "errorHandling": [],
+            "validation": []
+        },
+        "configurationAndServices": {
+            "configurations": []
+        },
+        "miscellaneous": {
+            "items": [
+                {
+                    "name": "JsonConvert",
+                    "type": "JsonConvert",
+                    "description": "Object Converter from json.NET",
+                    "itemType": "Documentation"
+                },
+                {
+                    "name": "Console",
+                    "type": "Console",
+                    "description": "The Console class from .NET Framework",
+                    "itemType": "Documentation"
+                },
+                {
+                    "name": "KeyValues",
+                    "type": "IDictionary<string, string>",
+                    "description": "A dictionary object containing key-value pairs",
+                    "itemType": "Documentation"
+                }
+            ]
+        }
     }
 ]

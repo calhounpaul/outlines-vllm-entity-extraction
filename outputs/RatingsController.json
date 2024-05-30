@@ -1,38 +1,143 @@
 [
     {
-        "controllerName": "RatingsController",
-        "baseRoute": "/ratings",
-        "routes": [
-            {
-                "route": "",
-                "httpMethod": "POST",
-                "action": "PeformRating",
-                "authRequired": true,
-                "roles": [
-                    "Admin",
-                    "Moderator"
-                ]
-            },
-            {
-                "route": "product/{id}",
-                "httpMethod": "GET",
-                "action": "GetRatingsForWorkspace",
-                "authRequired": false,
-                "roles": [
-                    "User"
-                ]
-            },
-            {
-                "route": "me/product/{id}",
-                "httpMethod": "GET",
-                "action": "GetMyRatingForWorkspace",
-                "authRequired": true,
-                "roles": []
-            }
-        ],
-        "modelsUsed": [
-            "FlexWork.Models.Rating",
-            "FlexWork.Models.User"
-        ]
+        "declarationsAndDefinitions": {
+            "classDeclarations": [
+                {
+                    "name": "RatingsController",
+                    "type": "class",
+                    "description": "C# API controller for handling rating operations."
+                }
+            ],
+            "methodDeclarations": [
+                {
+                    "name": "PerformRating",
+                    "type": "method",
+                    "description": "Post method used to perform a rating, adding a new rating record to the database.",
+                    "httpMethod": "POST",
+                    "route": "ratings/ (an empty string for the current route segment in a RoutePrefix-based route)"
+                },
+                {
+                    "name": "GetRatingsForWorkspace",
+                    "type": "method",
+                    "description": "Get method used to retrieve ratings for a specified workspace.",
+                    "httpMethod": "GET",
+                    "route": "ratings/product/{id}"
+                },
+                {
+                    "name": "GetMyRatingForWorkspace",
+                    "type": "method",
+                    "description": "Get method used to retrieve a user's individual rating for a specified workspace.",
+                    "httpMethod": "GET",
+                    "route": "ratings/me/product/{id}"
+                }
+            ],
+            "propertyDeclarations": [
+                {
+                    "name": "FlexWork.Models.Context",
+                    "type": "field",
+                    "accessibility": "Private"
+                }
+            ],
+            "constantDeclarations": [],
+            "enumDeclarations": []
+        },
+        "httpMethodsAndRoutes": {
+            "methods": [
+                {
+                    "name": "POST",
+                    "type": "HTTP Method",
+                    "description": "Post method",
+                    "httpMethod": "POST",
+                    "route": "ratings/"
+                },
+                {
+                    "name": "GET",
+                    "type": "HTTP Method",
+                    "description": "Get method",
+                    "httpMethod": "GET",
+                    "route": "ratings/product/{id}"
+                },
+                {
+                    "name": "GET",
+                    "type": "HTTP Method",
+                    "description": "Get method for retrieving a user's individual rating",
+                    "httpMethod": "GET",
+                    "route": "ratings/me/product/{id}"
+                }
+            ],
+            "routes": [
+                "ratings",
+                "ratings/product/{id}",
+                "ratings/me/product/{id}"
+            ]
+        },
+        "dataAccessAndManipulation": {
+            "dataOperations": [
+                {
+                    "name": "Context.Ratings.Add(rating);",
+                    "type": "add",
+                    "description": "Add a new rating object to the database",
+                    "operationType": "Insert",
+                    "target": "Context.Ratings"
+                },
+                {
+                    "name": "await Context.SaveChangesAsync();",
+                    "type": "operation",
+                    "description": "Save the changes made to the database context",
+                    "operationType": "Update",
+                    "target": "Context"
+                }
+            ]
+        },
+        "errorHandlingAndValidation": {
+            "errorHandling": [
+                {
+                    "name": "ModelState.IsValid == false",
+                    "type": "condition",
+                    "description": "Check if the model state is invalid, returns BadRequest(ModelState) if the condition is true",
+                    "mechanism": "CustomException"
+                }
+            ],
+            "validation": [
+                {
+                    "name": "ModelState",
+                    "type": "validation",
+                    "description": "The model state object to validate the provided data when performing the POST rating operation",
+                    "validationType": "Input"
+                }
+            ]
+        },
+        "configurationAndServices": {
+            "configurations": [
+                {
+                    "name": "RoutePrefix",
+                    "type": "Configuration",
+                    "description": "Defines the base route prefix for the RatingsController, ex: base URL/ratings",
+                    "setting": "ServiceInjection"
+                }
+            ]
+        },
+        "miscellaneous": {
+            "items": [
+                {
+                    "name": "FlexWork.Models",
+                    "type": "namespace",
+                    "description": "The namespace for the models used in the RatingsController",
+                    "itemType": "Documentation"
+                },
+                {
+                    "name": "FlexWorkApp",
+                    "type": "source",
+                    "description": "The source for the controllers in the application",
+                    "itemType": "Documentation"
+                },
+                {
+                    "name": "Microsoft.AspNet.Identity",
+                    "type": "source",
+                    "description": "The source for the Identity services",
+                    "itemType": "Documentation"
+                }
+            ]
+        }
     }
 ]

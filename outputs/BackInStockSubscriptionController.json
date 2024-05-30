@@ -1,0 +1,184 @@
+[
+    {
+        "declarationsAndDefinitions": {
+            "classDeclarations": [
+                {
+                    "name": "BackInStockSubscriptionController",
+                    "type": "Controller",
+                    "description": "BackInStockSubscriptionController"
+                },
+                {
+                    "name": "BasePublicController",
+                    "type": "Controller",
+                    "description": "Class used as a base for UI public controllers. Allows to avoid duplicating some declarations and definitions."
+                }
+            ],
+            "methodDeclarations": [
+                {
+                    "name": "SubscribePopup",
+                    "type": "PartialView",
+                    "description": "Performs Product details page back in stock subscribe operation. Returns a partial view with the data for rendering.",
+                    "httpMethod": "GET",
+                    "route": "SubscribePopup/{productId}"
+                },
+                {
+                    "name": "SubscribePopupPOST",
+                    "type": "Json",
+                    "description": "Handles the form submission for the Product details page back in stock subscription popup.",
+                    "httpMethod": "POST",
+                    "route": "SubscribePopupPOST/{productId}"
+                },
+                {
+                    "name": "CustomerSubscriptions",
+                    "type": "View",
+                    "description": "Displays the Back in stock subscriptions for a customer on My Account page. Uses pagination.",
+                    "httpMethod": "GET",
+                    "route": "CustomerSubscriptions/{pageNumber}"
+                },
+                {
+                    "name": "CustomerSubscriptionsPOST",
+                    "type": "RedirectToRoute",
+                    "description": "Processes the form submissions on the My Account Back in stock subscriptions page.",
+                    "httpMethod": "POST",
+                    "route": "CustomerSubscriptionsPOST"
+                }
+            ],
+            "propertyDeclarations": [
+                {
+                    "name": "_backInStockSubscriptionService",
+                    "type": "IBackInStockSubscriptionService",
+                    "description": "The BackInStockSubscriptionService instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_catalogSettings",
+                    "type": "CatalogSettings",
+                    "description": "The CatalogSettings instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_customerSettings",
+                    "type": "CustomerSettings",
+                    "description": "The CustomerSettings instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_customerService",
+                    "type": "ICustomerService",
+                    "description": "The ICustomerService interface instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_localizationService",
+                    "type": "ILocalizationService",
+                    "description": "The ILocalizationService interface instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_notificationService",
+                    "type": "INotificationService",
+                    "description": "The INotificationService interface instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_productService",
+                    "type": "IProductService",
+                    "description": "The IProductService interface instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_storeContext",
+                    "type": "IStoreContext",
+                    "description": "The IStoreContext interface instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_urlRecordService",
+                    "type": "IUrlRecordService",
+                    "description": "The IUrlRecordService interface instance",
+                    "accessibility": "Private"
+                },
+                {
+                    "name": "_workContext",
+                    "type": "IWorkContext",
+                    "description": "The IWorkContext interface instance",
+                    "accessibility": "Private"
+                }
+            ],
+            "constantDeclarations": [],
+            "enumDeclarations": []
+        },
+        "httpMethodsAndRoutes": {
+            "methods": [
+                {
+                    "name": "GET",
+                    "type": "get",
+                    "description": "The HTTP GET method is used to retrieve data from a web service. It is commonly used to request information from a server.",
+                    "httpMethod": "GET",
+                    "route": "SubscribePopup"
+                },
+                {
+                    "name": "POST",
+                    "type": "post",
+                    "description": "The HTTP POST method is used to send data to a web service. It is commonly used to create or modify data on a server.",
+                    "httpMethod": "POST",
+                    "route": "SubscribePopupPO"
+                }
+            ],
+            "routes": [
+                "SubscribePopup",
+                "SubscribePopupPOST",
+                "CustomerSubscriptions",
+                "CustomerSubscriptionsPOST"
+            ]
+        },
+        "dataAccessAndManipulation": {
+            "dataOperations": [
+                {
+                    "name": "SubscribePopup",
+                    "type": "Retrieve",
+                    "description": "Retrieves data related to the specified productId.",
+                    "operationType": "Retrieve",
+                    "target": "_productService"
+                },
+                {
+                    "name": "CustomerSubscriptions",
+                    "type": "Retrieve",
+                    "description": "Retrieves back in stock subscriptions for the currently logged in customer.",
+                    "operationType": "Retrieve",
+                    "target": "_backInStockSubscriptionService"
+                }
+            ]
+        },
+        "errorHandlingAndValidation": {
+            "errorHandling": [
+                {
+                    "name": "Throw",
+                    "type": " throw exception",
+                    "description": "The Throw statement in C# generates an exception object and throws it. This can be used to indicate an error condition in your code.",
+                    "mechanism": "CustomException"
+                },
+                {
+                    "name": "Redirect",
+                    "type": " Redirect",
+                    "description": "Redirects the user to another page or action based on certain conditions.",
+                    "mechanism": "CustomException"
+                }
+            ],
+            "validation": []
+        },
+        "configurationAndServices": {
+            "configurations": [
+                {
+                    "name": "_backInStockSubscriptionService",
+                    "type": "instance",
+                    "description": "Instantiates the IBackInStockSubscriptionService interface",
+                    "setting": "AppSettings"
+                }
+            ]
+        },
+        "miscellaneous": {
+            "items": []
+        }
+    }
+]
