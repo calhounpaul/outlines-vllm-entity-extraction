@@ -2,70 +2,78 @@
     {
         "entityDeclarations": [
             {
-                "name": "RatingsController",
-                "type": "class",
-                "description": "API controller for managing ratings"
-            },
-            {
                 "name": "Rating",
                 "type": "class",
-                "description": "Model class representing a rating"
-            },
-            {
-                "name": "User",
-                "type": "class",
-                "description": "Model class representing a user"
+                "description": "Model for ratings"
             },
             {
                 "name": "Context",
                 "type": "class",
                 "description": "Database context"
+            },
+            {
+                "name": "BaseController",
+                "type": "class",
+                "description": "Base controller class"
             }
         ],
         "methodDeclarations": [
             {
-                "name": "PeformRating",
+                "name": "PerformRating",
                 "type": "method",
-                "description": "Performs a rating for a given rating object",
+                "description": "Performs a rating operation",
                 "httpMethod": "POST",
-                "route": "/ratings/",
+                "route": "/ratings",
                 "parameters": [
                     {
                         "name": "rating",
                         "type": "string",
-                        "description": "The rating object to be created"
+                        "description": "Rating object"
                     }
                 ]
             },
             {
                 "name": "GetRatingsForWorkspace",
                 "type": "method",
-                "description": "Gets ratings for a given workspace",
+                "description": "Returns ratings for a workspace",
                 "httpMethod": "GET",
                 "route": "/ratings/product/{id}",
                 "parameters": [
                     {
                         "name": "id",
                         "type": "string",
-                        "description": "The id of the workspace"
+                        "description": "Workspace id"
                     }
                 ]
             },
             {
                 "name": "GetMyRatingForWorkspace",
                 "type": "method",
-                "description": "Gets the rating for a given workspace for the current user",
+                "description": "Returns the user's rating for a workspace",
                 "httpMethod": "GET",
                 "route": "/ratings/me/product/{id}",
                 "parameters": [
                     {
                         "name": "id",
                         "type": "string",
-                        "description": "The id of the workspace"
+                        "description": "Workspace id"
                     }
                 ]
             }
         ],
-        "propertyDeclarations": []
+        "propertyDeclarations": [
+            {
+                "name": "UserId",
+                "type": "string",
+                "description": "User id from identity",
+                "accessibility": "Public"
+            },
+            {
+                "name": "Timestamp",
+                "type": "string",
+                "description": "Timestamp of the rating",
+                "accessibility": "Public"
+            }
+        ]
     }
 ]

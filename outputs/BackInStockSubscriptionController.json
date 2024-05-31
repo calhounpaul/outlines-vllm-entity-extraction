@@ -4,42 +4,117 @@
             {
                 "name": "BackInStockSubscriptionController",
                 "type": "class",
-                "description": "C# API controller for BackInStockSubscriptions"
+                "description": "API controller for managing back in stock subscriptions"
+            },
+            {
+                "name": "IBackInStockSubscriptionService",
+                "type": "interface",
+                "description": "Service for managing back in stock subscriptions"
+            },
+            {
+                "name": "CatalogSettings",
+                "type": "class",
+                "description": "Settings related to catalog"
+            },
+            {
+                "name": "CustomerSettings",
+                "type": "class",
+                "description": "Settings related to customers"
+            },
+            {
+                "name": "ICustomerService",
+                "type": "interface",
+                "description": "Service for managing customers"
+            },
+            {
+                "name": "ILocalizationService",
+                "type": "interface",
+                "description": "Service for localization"
+            },
+            {
+                "name": "INotificationService",
+                "type": "interface",
+                "description": "Service for sending notifications"
+            },
+            {
+                "name": "IProductService",
+                "type": "interface",
+                "description": "Service for managing products"
+            },
+            {
+                "name": "IStoreContext",
+                "type": "interface",
+                "description": "Service for managing store context"
+            },
+            {
+                "name": "IUrlRecordService",
+                "type": "interface",
+                "description": "Service for managing URL records"
+            },
+            {
+                "name": "IWorkContext",
+                "type": "interface",
+                "description": "Service for managing work context"
+            },
+            {
+                "name": "BackInStockSubscribeModel",
+                "type": "class",
+                "description": "Model for back in stock subscription popup"
+            },
+            {
+                "name": "CustomerBackInStockSubscriptionsModel",
+                "type": "class",
+                "description": "Model for customer's back in stock subscriptions"
+            },
+            {
+                "name": "CustomerBackInStockSubscriptionsModel.BackInStockSubscriptionModel",
+                "type": "class",
+                "description": "Nested model for customer's back in stock subscriptions"
+            },
+            {
+                "name": "PagerModel",
+                "type": "class",
+                "description": "Model for pagination"
+            },
+            {
+                "name": "BackInStockSubscriptionsRouteValues",
+                "type": "struct",
+                "description": "Route values for pagination in (My Account) Back in stock subscriptions"
             }
         ],
         "methodDeclarations": [
             {
                 "name": "SubscribePopup",
                 "type": "method",
-                "description": "Method to subscribe to back in stock notifications for a product",
+                "description": "Method for displaying the back in stock subscription popup on product details page",
                 "httpMethod": "GET",
-                "route": "SubscribePopup/{productId}",
+                "route": "SubscribePopup/[productId]",
                 "parameters": [
                     {
                         "name": "productId",
                         "type": "int",
-                        "description": "The ID of the product to subscribe"
+                        "description": "ID of the product"
                     }
                 ]
             },
             {
                 "name": "SubscribePopupPOST",
                 "type": "method",
-                "description": "Method to process the POST request from SubscribePopup",
+                "description": "Method for handling post request of the back in stock subscription popup on product details page",
                 "httpMethod": "POST",
                 "route": "SubscribePopupPOST",
                 "parameters": [
                     {
                         "name": "productId",
                         "type": "int",
-                        "description": "The ID of the product to subscribe"
+                        "description": "ID of the product"
                     }
                 ]
             },
             {
                 "name": "CustomerSubscriptions",
                 "type": "method",
-                "description": "Method to display customer's back in stock subscriptions",
+                "description": "Method for displaying the list of customer's back in stock subscriptions",
                 "httpMethod": "GET",
                 "route": "CustomerSubscriptions",
                 "parameters": []
@@ -47,9 +122,9 @@
             {
                 "name": "CustomerSubscriptionsPOST",
                 "type": "method",
-                "description": "Method to process the POST request from CustomerSubscriptions",
+                "description": "Method for handling post request of the back in stock subscriptions page in (My Account)",
                 "httpMethod": "POST",
-                "route": "CustomerSubscriptionsPOST",
+                "route": "CustomerSubscriptions",
                 "parameters": []
             }
         ],
@@ -57,61 +132,61 @@
             {
                 "name": "_backInStockSubscriptionService",
                 "type": "int",
-                "description": "Dependency of BackInStockSubscriptionService",
+                "description": "Instance of IBackInStockSubscriptionService",
                 "accessibility": "Protected"
             },
             {
                 "name": "_catalogSettings",
                 "type": "int",
-                "description": "Dependency of CatalogSettings",
+                "description": "Instance of CatalogSettings",
                 "accessibility": "Protected"
             },
             {
                 "name": "_customerSettings",
                 "type": "int",
-                "description": "Dependency of CustomerSettings",
+                "description": "Instance of CustomerSettings",
                 "accessibility": "Protected"
             },
             {
                 "name": "_customerService",
                 "type": "int",
-                "description": "Dependency of CustomerService",
+                "description": "Instance of ICustomerService",
                 "accessibility": "Protected"
             },
             {
                 "name": "_localizationService",
                 "type": "int",
-                "description": "Dependency of LocalizationService",
+                "description": "Instance of ILocalizationService",
                 "accessibility": "Protected"
             },
             {
                 "name": "_notificationService",
                 "type": "int",
-                "description": "Dependency of NotificationService",
+                "description": "Instance of INotificationService",
                 "accessibility": "Protected"
             },
             {
                 "name": "_productService",
                 "type": "int",
-                "description": "Dependency of ProductService",
+                "description": "Instance of IProductService",
                 "accessibility": "Protected"
             },
             {
                 "name": "_storeContext",
                 "type": "int",
-                "description": "Dependency of StoreContext",
+                "description": "Instance of IStoreContext",
                 "accessibility": "Protected"
             },
             {
                 "name": "_urlRecordService",
                 "type": "int",
-                "description": "Dependency of UrlRecordService",
+                "description": "Instance of IUrlRecordService",
                 "accessibility": "Protected"
             },
             {
                 "name": "_workContext",
                 "type": "int",
-                "description": "Dependency of WorkContext",
+                "description": "Instance of IWorkContext",
                 "accessibility": "Protected"
             }
         ]

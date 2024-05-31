@@ -15,9 +15,11 @@ docker run --rm -it \
     --ipc=host \
     -m 90g \
     outlines_vllm_server \
-    --dtype="float16" \
+    --guided-decoding-backend outlines \
+    --dtype auto --api-key a-super-secret-token \
     --max-model-len 32000 \
     --model mistralai/Mistral-7B-Instruct-v0.3
+
 #    --model solidrust/Mistral-7B-Instruct-v0.3-AWQ
 #    --model neuralmagic/Mistral-7B-Instruct-v0.3-GPTQ-4bit
 #    --model NousResearch/Hermes-2-Theta-Llama-3-8B

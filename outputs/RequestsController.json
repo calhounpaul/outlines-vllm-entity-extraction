@@ -3,116 +3,282 @@
         "entityDeclarations": [
             {
                 "name": "ApplicationDbContext",
-                "type": "class"
+                "type": "class",
+                "description": "The main context for the application database."
             },
             {
                 "name": "Request",
                 "type": "class",
-                "description": "Model representing a Request"
+                "description": "A representation of a request in the API."
             },
             {
-                "name": "MemberID",
+                "name": "IdentitySample.Models.Request",
+                "type": "class",
+                "description": "The actual Request model from the IdentitySample project."
+            },
+            {
+                "name": "Property4U.Models.Request",
+                "type": "class",
+                "description": "The Request model used in the Property4U project."
+            },
+            {
+                "name": "string",
+                "type": "class",
+                "description": "A string data type used for storing user identities."
+            },
+            {
+                "name": "IdentityUser",
+                "type": "class",
+                "description": "A class representing the user identity in the application."
+            },
+            {
+                "name": "DbSet<T>",
+                "type": "class",
+                "description": "A collection of entities of a specific type (T) in the database."
+            },
+            {
+                "name": "DbContext",
+                "type": "class",
+                "description": "The base class for Entity Framework contexts."
+            },
+            {
+                "name": "DbEntityEntry<T>",
+                "type": "class",
+                "description": "A class allowing access to the state of an entity in the database."
+            },
+            {
+                "name": "DbUpdateConcurrencyException",
+                "type": "class",
+                "description": "Exception thrown when an entity is updated concurrently."
+            },
+            {
+                "name": "DbContextTransaction",
+                "type": "class",
+                "description": "A class representing a transaction in the database."
+            },
+            {
+                "name": "DbSet",
+                "type": "class",
+                "description": "A collection of entities in the database."
+            },
+            {
+                "name": "DbEntityEntry",
+                "type": "class",
+                "description": "A class representing an Entity in the database."
+            },
+            {
+                "name": "DbUpdateException",
+                "type": "class",
+                "description": "Exception thrown when an update operation fails."
+            },
+            {
+                "name": "DbEntityValidationException",
+                "type": "class",
+                "description": "Exception thrown when an entity fails validation."
+            },
+            {
+                "name": "DbInterception.IDbCommandInterceptor",
                 "type": "interface",
-                "description": "Property for Member's ID"
+                "description": "An interface for intercepting database commands."
             },
             {
-                "name": "AgentID",
+                "name": "DbInterception.IDbCommandCall",
                 "type": "interface",
-                "description": "Property for Agent's ID"
+                "description": "An interface representing a database command call."
             },
             {
-                "name": "RequestStatus",
-                "type": "enum",
-                "description": "Enumeration of Request Status"
+                "name": "DbInterception.IDbCommandCall<T>",
+                "type": "interface",
+                "description": "An interface representing a database command call with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandCallInterceptor",
+                "type": "interface",
+                "description": "An interface for intercepting database command calls."
+            },
+            {
+                "name": "DbInterception.IDbCommandContext",
+                "type": "interface",
+                "description": "An interface representing the context of a database command."
+            },
+            {
+                "name": "DbInterception.IDbCommandInterceptorBuilder",
+                "type": "interface",
+                "description": "An interface for building database command interceptors."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeBuilder",
+                "type": "interface",
+                "description": "An interface for building a tree of database commands."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeBuilder<T>",
+                "type": "interface",
+                "description": "An interface for building a tree of database commands with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeInterceptor",
+                "type": "interface",
+                "description": "An interface for intercepting the tree of database commands."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeInterceptorBuilder",
+                "type": "interface",
+                "description": "An interface for building a database command tree interceptor."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitor",
+                "type": "interface",
+                "description": "An interface for visiting the nodes of a database command tree."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitor<T>",
+                "type": "interface",
+                "description": "An interface for visiting the nodes of a database command tree with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorBuilder",
+                "type": "interface",
+                "description": "An interface for building a database command tree visitor."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorBuilder<T>",
+                "type": "interface",
+                "description": "An interface for building a database command tree visitor with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScope",
+                "type": "interface",
+                "description": "An interface representing a scope for visiting database command trees."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScope<T>",
+                "type": "interface",
+                "description": "An interface representing a scope for visiting database command trees with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeBuilder",
+                "type": "interface",
+                "description": "An interface for building a database command tree visitor scope."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeBuilder<T>",
+                "type": "interface",
+                "description": "An interface for building a database command tree visitor scope with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeFactory",
+                "type": "interface",
+                "description": "An interface for creating database command tree visitor scopes."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeFactory<T>",
+                "type": "interface",
+                "description": "An interface for creating database command tree visitor scopes with a generic type parameter."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeFactoryBuilder",
+                "type": "interface",
+                "description": "An interface for building database command tree visitor scope factories."
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeFactoryBuilder<T>",
+                "type": "interface",
+                "description": "An interface for building database command tree visitor scope factories with a generic typeparameter"
+            },
+            {
+                "name": "DbInterception.IDbCommandTreeVisitorScopeFactoryBuilder<T, TScope>",
+                "type": "interface",
+                "description": "An interface for building database command tree visitor scope factories with two generic type paramt"
             }
         ],
         "methodDeclarations": [
             {
                 "name": "GetRecentPendingRequests",
                 "type": "method",
-                "description": "GET api/GetRecentPendingRequests. Retrieves recent pending requests for the authenticated agent.",
+                "description": "Gets the recent pending requests for the current user, who must be an agent.",
                 "httpMethod": "GET",
-                "route": "GetRecentPendingRequests",
+                "route": "api/GetRecentPendingRequests",
                 "parameters": [
                     {
                         "name": "none",
                         "type": "string",
-                        "description": "No parameters"
+                        "description": "The HTTP GET request to the api/GetRecentPendingRequests route."
                     }
                 ]
             },
             {
                 "name": "GetRequests",
                 "type": "method",
-                "description": "GET api/Requests. Retrieves all requests for the authenticated user.",
+                "description": "Gets all requests for the current user.",
                 "httpMethod": "GET",
-                "route": "Requests",
+                "route": "api/Requests",
                 "parameters": [
                     {
                         "name": "none",
                         "type": "string",
-                        "description": "No parameters"
+                        "description": "The HTTP GET request to the api/Requests route."
                     }
                 ]
             },
             {
                 "name": "GetRequest",
                 "type": "method",
-                "description": "GET api/Requests/{id}. Retrieves a specific request by ID.",
+                "description": "Gets the specific request with the given ID.",
                 "httpMethod": "GET",
-                "route": "Requests/{id}",
+                "route": "api/Requests/{id}",
                 "parameters": [
                     {
                         "name": "id",
                         "type": "int",
-                        "description": "Request ID"
+                        "description": "The ID of the request to retrieve."
                     }
                 ]
             },
             {
                 "name": "PutRequest",
                 "type": "method",
-                "description": "PUT api/Requests/{id}. Updates a specific request by ID.",
+                "description": "Updates the specified request in the database.",
                 "httpMethod": "PUT",
-                "route": "Requests/{id}",
+                "route": "api/Requests/{id}",
                 "parameters": [
                     {
                         "name": "id",
                         "type": "int",
-                        "description": "Request ID"
+                        "description": "The ID of the request to update."
                     },
                     {
                         "name": "request",
-                        "type": "bool",
-                        "description": "Updated request object"
+                        "type": "decimal",
+                        "description": "The updated Request object."
                     }
                 ]
             },
             {
                 "name": "PostRequest",
                 "type": "method",
-                "description": "POST api/Requests. Creates a new request.",
+                "description": "Adds a new request to the database.",
                 "httpMethod": "POST",
-                "route": "Requests",
+                "route": "api/Requests",
                 "parameters": [
                     {
                         "name": "request",
-                        "type": "bool",
-                        "description": "New request object"
+                        "type": "decimal",
+                        "description": "The new Request object to add to the database."
                     }
                 ]
             },
             {
                 "name": "DeleteRequest",
                 "type": "method",
-                "description": "DELETE api/Requests/{id}. Deletes a specific request by ID.",
+                "description": "Deletes the specified request from the database.",
                 "httpMethod": "DELETE",
-                "route": "Requests/{id}",
+                "route": "api/Requests/{id}",
                 "parameters": [
                     {
                         "name": "id",
                         "type": "int",
-                        "description": "Request ID"
+                        "description": "The ID of the request to delete."
                     }
                 ]
             }
@@ -120,14 +286,14 @@
         "propertyDeclarations": [
             {
                 "name": "db",
-                "type": "int",
-                "description": "Private instance of ApplicationDbContext",
+                "type": "decimal",
+                "description": "The main database context for the application.",
                 "accessibility": "Private"
             },
             {
                 "name": "strCurrentUserId",
                 "type": "string",
-                "description": "Holds the ID of the authenticated user",
+                "description": "The current user's ID.",
                 "accessibility": "Private"
             }
         ]

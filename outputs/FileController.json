@@ -2,94 +2,129 @@
     {
         "entityDeclarations": [
             {
+                "name": "FileController",
+                "type": "class",
+                "description": "C# API controller for file operations"
+            },
+            {
+                "name": "CustomApiController",
+                "type": "class",
+                "description": "A custom base class for the API controller"
+            },
+            {
                 "name": "DTO_WEB_BaiViet",
-                "type": "class"
+                "type": "class",
+                "description": "Data transfer object for web news item"
             },
             {
                 "name": "DTO_CUS_DOC_File",
-                "type": "class"
+                "type": "class",
+                "description": "Data transfer object for custom document file"
             },
             {
                 "name": "BS_CUS_DOC_File",
-                "type": "class"
+                "type": "class",
+                "description": "Business service for custom document files"
             }
         ],
         "methodDeclarations": [
             {
                 "name": "Post_UploadImage",
                 "type": "method",
+                "description": "Upload image",
                 "httpMethod": "POST",
                 "route": "/api/CUS/FILE/UploadImage",
                 "parameters": [
                     {
                         "name": "httpRequest",
                         "type": "string",
-                        "isOptional": false,
-                        "apiLocation": "body"
+                        "description": "HTTP request object"
                     }
                 ]
             },
             {
                 "name": "Post_UploadAvatar",
                 "type": "method",
+                "description": "Upload avatar",
                 "httpMethod": "POST",
                 "route": "/api/CUS/FILE/UploadAvatar/{code}",
                 "parameters": [
                     {
                         "name": "code",
                         "type": "string",
-                        "isOptional": false,
-                        "apiLocation": "path"
+                        "description": "Code for the staff"
                     }
                 ]
             },
             {
                 "name": "Post_FileUpload",
                 "type": "method",
+                "description": "Upload a document file",
                 "httpMethod": "POST",
                 "route": "/api/CUS/FILE/FileUpload/{id}",
                 "parameters": [
                     {
                         "name": "id",
                         "type": "int",
-                        "isOptional": false,
-                        "apiLocation": "path"
+                        "description": "Document file ID"
                     }
                 ]
             },
             {
                 "name": "Get_NhanSu",
                 "type": "method",
+                "description": "Get staff data in Excel format",
                 "httpMethod": "GET",
                 "route": "/api/CUS/FILE/NhanSu"
             },
             {
                 "name": "Get_BaoCaoNangSuatKhoaHoc",
                 "type": "method",
+                "description": "Get academic progress report data in Excel format",
                 "httpMethod": "GET",
                 "route": "/api/CUS/FILE/BaoCaoNangSuatKhoaHoc"
             },
             {
                 "name": "Get_HoiNghiHoiThao",
                 "type": "method",
+                "description": "Get seminar/conference data in Excel format",
                 "httpMethod": "GET",
                 "route": "/api/CUS/FILE/HoiNghiHoiThao"
             },
             {
                 "name": "Post_UploadImageCustom",
                 "type": "method",
+                "description": "Upload custom image",
                 "httpMethod": "POST",
-                "route": "/api/CUS/FILE/UploadImageCustom",
-                "parameters": [
-                    {
-                        "name": "httpRequest",
-                        "type": "string",
-                        "isOptional": false,
-                        "apiLocation": "body"
-                    }
-                ]
+                "route": "/api/CUS/FILE/UploadImageCustom"
+            },
+            {
+                "name": "DownloadFile",
+                "type": "method",
+                "description": "Download a file",
+                "httpMethod": "GET",
+                "route": "/api/CUS/FILE/Download"
             }
         ],
-        "propertyDeclarations": []
+        "propertyDeclarations": [
+            {
+                "name": "db",
+                "type": "string",
+                "description": "Database context",
+                "accessibility": "Private"
+            },
+            {
+                "name": "PartnerID",
+                "type": "string",
+                "description": "Partner ID",
+                "accessibility": "Private"
+            },
+            {
+                "name": "Username",
+                "type": "string",
+                "description": "Current user name",
+                "accessibility": "Private"
+            }
+        ]
     }
 ]

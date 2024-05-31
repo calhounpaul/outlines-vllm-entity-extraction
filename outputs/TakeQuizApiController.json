@@ -3,39 +3,46 @@
         "entityDeclarations": [
             {
                 "name": "ApplicationDbContext",
-                "type": "class"
+                "type": "class",
+                "description": "Context for the application database."
             },
             {
                 "name": "StartQuiz",
-                "type": "class"
+                "type": "class",
+                "description": "Initialization class for quiz."
             },
             {
                 "name": "TakeQuizApiController",
                 "type": "class",
-                "description": "C# API controller for quiz taking"
+                "description": "API controller for handling quiz-related operations."
+            },
+            {
+                "name": "StudentTopicQuiz",
+                "type": "class",
+                "description": "Entity representing a student's quiz information."
             }
         ],
         "methodDeclarations": [
             {
                 "name": "ShowNumbers",
                 "type": "method",
-                "description": "Gets the question numbers for a specified student",
+                "description": "Retrieves the list of questions for the current user in order.",
                 "httpMethod": "GET",
-                "route": "ShowNumbers",
+                "route": "api/TakeQuizApi/ShowNumbers",
                 "parameters": [
                     {
                         "name": "none",
                         "type": "string",
-                        "description": "none specified"
+                        "description": "none (implicitly accessed through User.Identity.GetUserName())"
                     }
                 ]
             },
             {
                 "name": "Menu",
                 "type": "method",
-                "description": "Gets the questions based on student id and module id",
+                "description": "Retrieves the list of questions for the given student and module.",
                 "httpMethod": "GET",
-                "route": "Menu",
+                "route": "api/TakeQuizApi/Menu",
                 "parameters": [
                     {
                         "name": "studentId",
@@ -45,35 +52,35 @@
                     {
                         "name": "ModuleId",
                         "type": "int",
-                        "description": "Module ID for the quiz"
+                        "description": "Module ID for the questions."
                     }
                 ]
             },
             {
                 "name": "GetSelectSubject",
                 "type": "method",
-                "description": "Selects the subject based on ModuleId and email, then adds new quiz questions for the student if noq",
+                "description": "Creates a new quiz for the given student and module if one does not exist, else returns the existing",
                 "httpMethod": "GET",
-                "route": "GetSelectSubject",
+                "route": "api/TakeQuizApi/GetSelectSubject",
                 "parameters": [
                     {
                         "name": "ModuleId",
                         "type": "int",
-                        "description": "Module ID for the quiz"
+                        "description": "Module ID for the questions."
                     },
                     {
                         "name": "email",
                         "type": "string",
-                        "description": "Email for converting to student ID"
+                        "description": "Student email address"
                     }
                 ]
             },
             {
                 "name": "Exam",
                 "type": "method",
-                "description": "Returns the question based on question number, student id, and module id",
+                "description": "Retrieves the question with the given number for the specified student and module.",
                 "httpMethod": "GET",
-                "route": "Exam",
+                "route": "api/TakeQuizApi/Exam",
                 "parameters": [
                     {
                         "name": "questionNo",
@@ -83,7 +90,7 @@
                     {
                         "name": "ModuleId",
                         "type": "int",
-                        "description": "Module ID for the quiz"
+                        "description": "Module ID for the questions."
                     },
                     {
                         "name": "studentid",
@@ -95,9 +102,9 @@
             {
                 "name": "ExamIndex",
                 "type": "method",
-                "description": "Saves the exam index data with student id, topic id, and score",
+                "description": "Updates the exam index with the student's information.",
                 "httpMethod": "POST",
-                "route": "ExamIndex",
+                "route": "api/TakeQuizApi/ExamIndex",
                 "parameters": [
                     {
                         "name": "studentId",
@@ -107,29 +114,16 @@
                     {
                         "name": "topicId",
                         "type": "int",
-                        "description": "Topic ID for the exam"
+                        "description": "Topic ID (optional)"
                     },
                     {
                         "name": "score",
                         "type": "string",
-                        "description": "Score for the exam"
+                        "description": "Student's score"
                     }
                 ]
             }
         ],
-        "propertyDeclarations": [
-            {
-                "name": "_db",
-                "type": "string",
-                "description": "Private _db instance of ApplicationDbContext",
-                "accessibility": "Private"
-            },
-            {
-                "name": "_startQuiz",
-                "type": "string",
-                "description": "Private _startQuiz instance of StartQuiz",
-                "accessibility": "Private"
-            }
-        ]
+        "propertyDeclarations": []
     }
 ]

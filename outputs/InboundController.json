@@ -4,25 +4,32 @@
             {
                 "name": "InboundController",
                 "type": "class",
-                "description": "API Controller"
+                "description": "API controller for handling Inbound POST requests and processing them using InboundWebhookParser."
             }
         ],
         "methodDeclarations": [
             {
                 "name": "Index",
                 "type": "method",
-                "description": "Returns View",
+                "description": "Default GET method that returns a View.",
                 "httpMethod": "GET",
                 "route": "/"
             },
             {
                 "name": "InboundParse",
                 "type": "method",
-                "description": "Process POST from Inbound Parse and print received data.",
+                "description": "Process POST requests from Inbound Parse and print received data.",
                 "httpMethod": "POST",
                 "route": "/inbound"
             }
         ],
-        "propertyDeclarations": []
+        "propertyDeclarations": [
+            {
+                "name": "_inboundParser",
+                "type": "string",
+                "description": "Instance of InboundWebhookParser using Request.Body.",
+                "accessibility": "Private"
+            }
+        ]
     }
 ]

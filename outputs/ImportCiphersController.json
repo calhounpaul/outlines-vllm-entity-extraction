@@ -30,22 +30,26 @@
                 "type": "interface"
             },
             {
-                "name": "IOrganizationRepository",
-                "type": "interface"
+                "name": "ImportCiphersRequestModel",
+                "type": "class"
+            },
+            {
+                "name": "ImportOrganizationCiphersRequestModel",
+                "type": "class"
             }
         ],
         "methodDeclarations": [
             {
                 "name": "PostImport",
                 "type": "method",
-                "description": "Import ciphers",
+                "description": "Imports ciphers",
                 "httpMethod": "POST",
-                "route": "import",
+                "route": "ciphers/import",
                 "parameters": [
                     {
                         "name": "model",
                         "type": "string",
-                        "description": "ImportCiphersRequestModel",
+                        "description": "The incoming request body as a JSON object.",
                         "isOptional": false
                     }
                 ]
@@ -53,59 +57,74 @@
             {
                 "name": "PostImport",
                 "type": "method",
-                "description": "Import ciphers for organization",
+                "description": "Imports ciphers for an organization",
                 "httpMethod": "POST",
-                "route": "import-organization",
+                "route": "ciphers/import-organization",
                 "parameters": [
                     {
                         "name": "organizationId",
                         "type": "string",
-                        "description": "Organization ID",
+                        "description": "The organization id as a query parameter.",
                         "isOptional": false
                     },
                     {
                         "name": "model",
                         "type": "string",
-                        "description": "ImportOrganizationCiphersRequestModel",
+                        "description": "The incoming request body as a JSON object.",
                         "isOptional": false
                     }
                 ]
+            },
+            {
+                "name": "CheckOrgImportPermission",
+                "type": "method",
+                "description": "Checks if the user has permission to import ciphers for an organization",
+                "httpMethod": "GET",
+                "route": "ciphers/import-organization",
+                "parameters": []
             }
         ],
         "propertyDeclarations": [
             {
                 "name": "_cipherService",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of ICipherService.",
                 "accessibility": "Private"
             },
             {
                 "name": "_userService",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of IUserService.",
                 "accessibility": "Private"
             },
             {
                 "name": "_currentContext",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of ICurrentContext.",
                 "accessibility": "Private"
             },
             {
                 "name": "_logger",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of ILogger<ImportCiphersController>.",
                 "accessibility": "Private"
             },
             {
                 "name": "_globalSettings",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of GlobalSettings.",
                 "accessibility": "Private"
             },
             {
                 "name": "_collectionRepository",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of ICollectionRepository.",
                 "accessibility": "Private"
             },
             {
                 "name": "_authorizationService",
-                "type": "string",
+                "type": "int",
+                "description": "The dependency of IAuthorizationService.",
                 "accessibility": "Private"
             }
         ]

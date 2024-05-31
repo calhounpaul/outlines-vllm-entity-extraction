@@ -1,5 +1,4 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Extracted Data from a C# Controller File",
   "type": "object",
   "definitions": {
@@ -41,7 +40,7 @@
         "name": {
           "type": "string",
           "description": "The name of the entity.",
-          "regex": "^[a-zA-Z0-9_]*$"
+          "regex": "^[a-zA-Z0-9_.-]*$"
         },
         "type": {
           "type": "string",

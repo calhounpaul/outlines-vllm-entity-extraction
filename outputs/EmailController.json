@@ -2,66 +2,35 @@
     {
         "entityDeclarations": [
             {
-                "name": "SendGrid.ASPSamples.Models",
-                "type": "class"
+                "name": "EmailController",
+                "type": "class",
+                "description": "API controller for handling email operations"
             },
             {
-                "name": "System",
-                "type": "class"
-            },
-            {
-                "name": "System.Collections.Generic",
-                "type": "class"
-            },
-            {
-                "name": "System.Linq",
-                "type": "class"
-            },
-            {
-                "name": "System.Web",
-                "type": "class"
-            },
-            {
-                "name": "System.Web.Mvc",
-                "type": "class"
+                "name": "_sendGridEmailService",
+                "type": "class",
+                "description": "An instance of the SendGridEmailService class"
             }
         ],
         "methodDeclarations": [
             {
-                "name": "EmailController",
-                "type": "constructor",
-                "description": "Constructor initializing _sendGridEmailService object.",
+                "name": "Send",
+                "type": "method",
+                "description": "Displays the email sending form",
                 "httpMethod": "GET",
-                "route": "Null",
-                "parameters": [
-                    {
-                        "name": "None",
-                        "type": "string",
-                        "isOptional": false,
-                        "apiLocation": "body"
-                    }
-                ]
+                "route": "EmailController/Send"
             },
             {
                 "name": "Send",
                 "type": "method",
-                "description": "Returns the view for email sending form.",
-                "httpMethod": "GET",
-                "route": "api/email",
-                "parameters": []
-            },
-            {
-                "name": "Send",
-                "type": "method",
-                "description": "Sends email using SendGridEmailService and redirects to the same view.",
+                "description": "Sends an email using SendGridEmailService and displays success/failure message",
                 "httpMethod": "POST",
-                "route": "api/email",
+                "route": "EmailController/Send",
                 "parameters": [
                     {
                         "name": "emailContract",
                         "type": "string",
-                        "isOptional": false,
-                        "apiLocation": "body"
+                        "description": "An email sending object representing the email data to be sent"
                     }
                 ]
             }
@@ -70,7 +39,7 @@
             {
                 "name": "_sendGridEmailService",
                 "type": "string",
-                "description": "SendGridEmailService object for sending emails.",
+                "description": "Private instance of SendGridEmailService",
                 "accessibility": "Private"
             }
         ]

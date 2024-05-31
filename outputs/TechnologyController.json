@@ -4,75 +4,70 @@
             {
                 "name": "TechnologyController",
                 "type": "class",
-                "description": "C# API controller for the Technology resource"
+                "description": "API Controller for Technologies"
             },
             {
                 "name": "ApplicationDbContext",
                 "type": "class",
-                "description": "Database context class"
+                "description": "Database context for the application"
             },
             {
                 "name": "User",
                 "type": "class",
-                "description": "User model class"
+                "description": "User model in the application"
             },
             {
                 "name": "Chat",
                 "type": "class",
-                "description": "Base class for Technology and other chat types"
+                "description": "Chat model in the application"
             },
             {
                 "name": "Technology",
                 "type": "class",
-                "description": "Technology model class and derived from Chat"
-            },
-            {
-                "name": "TechnologyBindingModel",
-                "type": "class",
-                "description": "Data binding model for Technology creation"
-            },
-            {
-                "name": "TechnologyViewModel",
-                "type": "class",
-                "description": "View model for Technology object"
+                "description": "Technology model in the application"
             },
             {
                 "name": "Message",
                 "type": "class",
-                "description": "Message model class"
+                "description": "Message model in the application"
             },
             {
-                "name": "LiveHackHub",
+                "name": "TechnologyBindingModel",
                 "type": "class",
-                "description": "Hub class for real-time updates and communication"
+                "description": "Binding model for creating a new technology"
+            },
+            {
+                "name": "TechnologyViewModel",
+                "type": "class",
+                "description": "View model for Technology"
             }
         ],
         "methodDeclarations": [
             {
                 "name": "GetTechnologies",
                 "type": "method",
-                "description": "Retrieves a list of all technologies ordered by name",
+                "description": "Get all technologies",
                 "httpMethod": "GET",
-                "route": "api/Technology",
+                "route": "/api/Technology/",
                 "parameters": [
                     {
-                        "name": "none",
+                        "name": "None",
                         "type": "string",
-                        "description": "The empty route represents the base route"
+                        "description": "None. This is the default route when no parameter is provided"
                     }
                 ]
             },
             {
                 "name": "PostCreate",
                 "type": "method",
-                "description": "Creates a new technology",
+                "description": "Create a new technology",
                 "httpMethod": "POST",
-                "route": "api/Technology",
+                "route": "/api/Technology/",
                 "parameters": [
                     {
                         "name": "inputTech",
                         "type": "string",
-                        "description": "Input data to create a new technology"
+                        "description": "Input for creating a new technology. This is the body of the POST request"
                     }
                 ]
             }
@@ -81,14 +76,18 @@
             {
                 "name": "RoutePrefix",
                 "type": "string",
-                "description": "The controller route prefix",
-                "accessibility": "Public"
+                "description": "Route prefix for the controller",
+                "accessibility": "Public",
+                "isStatic": false,
+                "isReadOnly": false
             },
             {
                 "name": "Authorize",
                 "type": "string",
-                "description": "Authorization attribute for secure access",
-                "accessibility": "Public"
+                "description": "Authorize attribute for the controller",
+                "accessibility": "Public",
+                "isStatic": false,
+                "isReadOnly": false
             }
         ]
     }

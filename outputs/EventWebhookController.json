@@ -1,52 +1,78 @@
 [
     {
-        "original_string": "{\n  \"entityDeclarations\": [\n    {\n      \"name\": \"EventWebhookController\",\n      \"type\": \"class\",\n      \"description\": \"API controller for handling event webhooks.\"\n    }\n  ],\n  \"methodDeclarations\": [\n    {\n      \"name\": \"Index\",\n      \"type\": \"method\",\n      \"description\": \"GET : Handles the index page request.\",\n      \"httpMethod\": \"GET\",\n      \"route\": \"/\",\n      \"parameters\": [\n        {\n          \"name\": \"context\",\n          \"type\": \"bool\",\n          \"isOptional\": false\n        }\n      ]\n    },\n    {\n      \"name\": \"Events\",\n      \"type\": \"method\",\n      \"description\": \"POST : Handles the event webhook handler.\",\n      \"httpMethod\": \"POST\",\n      \"route\": \"/events\",\n      \"parameters\": [\n        {\n          \"name\": \"context\",\n          \"type\": \"bool\",\n          \"isOptional\": false\n        }\n      ]\n    }\n  ],\n  \"propertyDeclarations\": [\n    {\n      \"name\": \"EventParser\",\n      \"type\": \"int\",\n      \"description\": \"Instance of the EventParser class.\"\n    ,\n      \"accessibility\": \"Private\"\n    }\n  ]",
-        "repaired_json": {
-            "entityDeclarations": [
-                {
-                    "name": "EventWebhookController",
-                    "type": "class",
-                    "description": "API controller for handling event webhooks."
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "Index",
-                    "type": "method",
-                    "description": "GET : Handles the index page request.",
-                    "httpMethod": "GET",
-                    "route": "/",
-                    "parameters": [
-                        {
-                            "name": "context",
-                            "type": "bool",
-                            "isOptional": false
-                        }
-                    ]
-                },
-                {
-                    "name": "Events",
-                    "type": "method",
-                    "description": "POST : Handles the event webhook handler.",
-                    "httpMethod": "POST",
-                    "route": "/events",
-                    "parameters": [
-                        {
-                            "name": "context",
-                            "type": "bool",
-                            "isOptional": false
-                        }
-                    ]
-                }
-            ],
-            "propertyDeclarations": [
-                {
-                    "name": "EventParser",
-                    "type": "int",
-                    "description": "Instance of the EventParser class.",
-                    "accessibility": "Private"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "EventWebhookController",
+                "type": "class",
+                "description": "API controller for event webhook handling."
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "Index",
+                "type": "method",
+                "description": "GET : Index page",
+                "httpMethod": "GET",
+                "route": "/",
+                "parameters": [
+                    {
+                        "name": "None",
+                        "type": "string",
+                        "description": "The route to access the index page."
+                    }
+                ]
+            },
+            {
+                "name": "Events",
+                "type": "method",
+                "description": "POST : Event webhook handler",
+                "httpMethod": "POST",
+                "route": "/events",
+                "parameters": [
+                    {
+                        "name": "None",
+                        "type": "string",
+                        "description": "The route to post event webhook data."
+                    },
+                    {
+                        "name": "Request",
+                        "type": "string",
+                        "description": "The HttpRequest object containing the event webhook data."
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": [
+            {
+                "name": "None",
+                "type": "string",
+                "description": "Namespace containing the models and parsers.",
+                "accessibility": "Public"
+            },
+            {
+                "name": "None",
+                "type": "string",
+                "description": "Namespace containing the ASP.NET Core MVC classes.",
+                "accessibility": "Public"
+            },
+            {
+                "name": "None",
+                "type": "string",
+                "description": "Namespace containing System classes.",
+                "accessibility": "Public"
+            },
+            {
+                "name": "None",
+                "type": "string",
+                "description": "Namespace containing asynchronous tasks classes.",
+                "accessibility": "Public"
+            },
+            {
+                "name": "None",
+                "type": "string",
+                "description": "Namespace containing the collection classes.",
+                "accessibility": "Public"
+            }
+        ]
     }
 ]
