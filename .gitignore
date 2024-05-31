@@ -1,3 +1,4 @@
 /cache/*
 /vllm/*
+/vllm
 /secrets.json
