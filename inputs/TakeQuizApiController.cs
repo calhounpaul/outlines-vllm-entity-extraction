@@ -39,8 +39,6 @@ namespace CodedenimWebApp.Controllers.Api
             return Ok(questionNumber);
         }
 
-
-        // [Authorize(Roles = RoleName.Student)]
         [System.Web.Http.HttpGet]
         public IHttpActionResult GetSelectSubject(int ModuleId, string email)
         {
@@ -57,22 +55,13 @@ namespace CodedenimWebApp.Controllers.Api
                 if (questionExist > 1)
                 {
                     return Exam(questionNo, ModuleId, studentId);
-                    //return RedirectToRoute("Exam", new
-                    //{
-                    //    questionNo = 1,
-                    //    topicId = topicId,
-                    //    studentid = studentName
-                    //});
                 }
 
-                //var r = new Random();
 
                 Random rnd = new Random();
                 var myquestion = _db.TopicQuizs.AsNoTracking().Where(x => x.ModuleId.Equals(ModuleId))
                     .OrderBy(x => Guid.NewGuid()).Take(2)
                     .DistinctBy(d => d.TopicQuizId).ToList();
-                // var myquestion = bquestion.OrderBy(x => Guid.NewGuid()).Take(totalQuestion).ToList();
-                //var tenRandomUser = listUsr.OrderBy(u => r.Next()).Take(10);
 
                 int count = 1;
                 foreach (var question in myquestion)
@@ -103,12 +92,6 @@ namespace CodedenimWebApp.Controllers.Api
 
                  _db.SaveChangesAsync();
                 return Exam(questionNo,ModuleId, studentId);
-                //return RedirectToRoute("Exam", new
-                //{
-                //    questionNo = 1,
-                //    topicId = topicId,
-                //    studentid = studentName,    
-                //});
             }
             var date = DateTime.Now;
 
@@ -122,22 +105,6 @@ namespace CodedenimWebApp.Controllers.Api
             var question =  _db.StudentTopicQuizs.AsNoTracking()
                 .FirstOrDefaultAsync(s => s.StudentId.Equals(studentid)
                                           && s.ModuleId.Equals(ModuleId) && s.QuestionNumber.Equals(myno));
-            //if (question != null)
-            //{
-            //    if (Session["Rem_Time"] == null)
-            //    {
-            //        int time = 5;
-            //        Session["Rem_Time"] = DateTime.Now.AddMinutes(time).ToString("MM-dd-yyyy h:mm:ss tt");
-            //        //Session["Rem_Time"] = DateTime.Now.AddMinutes(1).ToString("MM-dd-yyyy h:mm:ss tt");
-            //    }
-            //    //Session["Rem_Time"] = DateTime.Now.AddMinutes(2).ToString("dd-MM-yyyy h:mm:ss tt");
-            //    // Session["Rem_Time"] = DateTime.Now.AddMinutes(2).ToString("MM-dd-yyyy h:mm:ss tt");
-            //    ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            //    ViewBag.Rem_Time = Session["Rem_Time"];
-            //    //ViewBag.Course = await _db.Courses.AsNoTracking().Where(x => x.CourseId.Equals(courseId))
-            //    //    .Select(c => c.CourseName).FirstOrDefaultAsync();
-
-            //}
             return Ok(question);
         }
         public async Task<IHttpActionResult> ExamIndex(string studentId, int? topicId, string score)
@@ -148,13 +115,7 @@ namespace CodedenimWebApp.Controllers.Api
                 TopicId = topicId,
                 Score = score
             };
-            //ViewBag.StudentId = studentId;
-            //ViewBag.topicId = topicId;
-            //ViewBag.Score = score;
-
-           /// Session["Rem_Time"] = null;
             return Ok(examInfo);
-            //return View(studentList.ToList());
         }
 
     }

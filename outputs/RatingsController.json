@@ -1,143 +1,71 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
-                {
-                    "name": "RatingsController",
-                    "type": "class",
-                    "description": "C# API controller for handling rating operations."
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "PerformRating",
-                    "type": "method",
-                    "description": "Post method used to perform a rating, adding a new rating record to the database.",
-                    "httpMethod": "POST",
-                    "route": "ratings/ (an empty string for the current route segment in a RoutePrefix-based route)"
-                },
-                {
-                    "name": "GetRatingsForWorkspace",
-                    "type": "method",
-                    "description": "Get method used to retrieve ratings for a specified workspace.",
-                    "httpMethod": "GET",
-                    "route": "ratings/product/{id}"
-                },
-                {
-                    "name": "GetMyRatingForWorkspace",
-                    "type": "method",
-                    "description": "Get method used to retrieve a user's individual rating for a specified workspace.",
-                    "httpMethod": "GET",
-                    "route": "ratings/me/product/{id}"
-                }
-            ],
-            "propertyDeclarations": [
-                {
-                    "name": "FlexWork.Models.Context",
-                    "type": "field",
-                    "accessibility": "Private"
-                }
-            ],
-            "constantDeclarations": [],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
-                {
-                    "name": "POST",
-                    "type": "HTTP Method",
-                    "description": "Post method",
-                    "httpMethod": "POST",
-                    "route": "ratings/"
-                },
-                {
-                    "name": "GET",
-                    "type": "HTTP Method",
-                    "description": "Get method",
-                    "httpMethod": "GET",
-                    "route": "ratings/product/{id}"
-                },
-                {
-                    "name": "GET",
-                    "type": "HTTP Method",
-                    "description": "Get method for retrieving a user's individual rating",
-                    "httpMethod": "GET",
-                    "route": "ratings/me/product/{id}"
-                }
-            ],
-            "routes": [
-                "ratings",
-                "ratings/product/{id}",
-                "ratings/me/product/{id}"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "Context.Ratings.Add(rating);",
-                    "type": "add",
-                    "description": "Add a new rating object to the database",
-                    "operationType": "Insert",
-                    "target": "Context.Ratings"
-                },
-                {
-                    "name": "await Context.SaveChangesAsync();",
-                    "type": "operation",
-                    "description": "Save the changes made to the database context",
-                    "operationType": "Update",
-                    "target": "Context"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [
-                {
-                    "name": "ModelState.IsValid == false",
-                    "type": "condition",
-                    "description": "Check if the model state is invalid, returns BadRequest(ModelState) if the condition is true",
-                    "mechanism": "CustomException"
-                }
-            ],
-            "validation": [
-                {
-                    "name": "ModelState",
-                    "type": "validation",
-                    "description": "The model state object to validate the provided data when performing the POST rating operation",
-                    "validationType": "Input"
-                }
-            ]
-        },
-        "configurationAndServices": {
-            "configurations": [
-                {
-                    "name": "RoutePrefix",
-                    "type": "Configuration",
-                    "description": "Defines the base route prefix for the RatingsController, ex: base URL/ratings",
-                    "setting": "ServiceInjection"
-                }
-            ]
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "FlexWork.Models",
-                    "type": "namespace",
-                    "description": "The namespace for the models used in the RatingsController",
-                    "itemType": "Documentation"
-                },
-                {
-                    "name": "FlexWorkApp",
-                    "type": "source",
-                    "description": "The source for the controllers in the application",
-                    "itemType": "Documentation"
-                },
-                {
-                    "name": "Microsoft.AspNet.Identity",
-                    "type": "source",
-                    "description": "The source for the Identity services",
-                    "itemType": "Documentation"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "RatingsController",
+                "type": "class",
+                "description": "API controller for managing ratings"
+            },
+            {
+                "name": "Rating",
+                "type": "class",
+                "description": "Model class representing a rating"
+            },
+            {
+                "name": "User",
+                "type": "class",
+                "description": "Model class representing a user"
+            },
+            {
+                "name": "Context",
+                "type": "class",
+                "description": "Database context"
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "PeformRating",
+                "type": "method",
+                "description": "Performs a rating for a given rating object",
+                "httpMethod": "POST",
+                "route": "/ratings/",
+                "parameters": [
+                    {
+                        "name": "rating",
+                        "type": "string",
+                        "description": "The rating object to be created"
+                    }
+                ]
+            },
+            {
+                "name": "GetRatingsForWorkspace",
+                "type": "method",
+                "description": "Gets ratings for a given workspace",
+                "httpMethod": "GET",
+                "route": "/ratings/product/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "The id of the workspace"
+                    }
+                ]
+            },
+            {
+                "name": "GetMyRatingForWorkspace",
+                "type": "method",
+                "description": "Gets the rating for a given workspace for the current user",
+                "httpMethod": "GET",
+                "route": "/ratings/me/product/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "The id of the workspace"
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": []
     }
 ]

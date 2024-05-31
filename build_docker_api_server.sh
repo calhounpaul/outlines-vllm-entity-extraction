@@ -4,7 +4,7 @@
 
 if [ ! -d "vllm" ]; then
     git clone https://github.com/vllm-project/vllm
-    #git checkout c7f2cf2b7f67bce5842fedfdba508440fe257375
+    #git checkout 919770957f26d71a5a6eda7a1a7443dfeb5ba0ee
     cd vllm
     sed -i 's/ENTRYPOINT \[/#ENTRYPOINT \[/g' Dockerfile
     echo "ENTRYPOINT [\"python3\", \"-m\", \"outlines.serve.serve\"]" >> Dockerfile

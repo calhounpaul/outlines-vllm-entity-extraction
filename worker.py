@@ -98,6 +98,7 @@ if not os.path.exists(os.path.join(parent_dir, "outputs")):
     os.makedirs(os.path.join(parent_dir, "outputs"))
 
 controllers_list = os.listdir(inputs_dir)
+
 random.shuffle(controllers_list)
 
 for input_filename in controllers_list:
@@ -108,9 +109,9 @@ for input_filename in controllers_list:
     with open(os.path.join(inputs_dir, input_filename), "r") as f:
         controller_contents = f.read()
     if len(controller_contents) > truncate_middle_at:
-        controller_contents = controller_contents[:int(truncate_middle_at/2)] + "\n\n[TRUNCATED MIDDLE PORTION OF FILE]\n\n" + controller_contents[-int(truncate_middle_at/2):]
+        controller_contents = controller_contents[:int(truncate_middle_at/2)] + "...\n\n[TRUNCATED MIDDLE PORTION OF FILE]\n\n..." + controller_contents[-int(truncate_middle_at/2):]
         print("truncating input")
-    prompt = "Extract all C# API controller file data from the following API controller C# code:\n\n" + input_filename + "\n\n" + controller_contents + "\n\nNow, please provide the extracted API controller file data in JSON format."
+    prompt = "Extract all C# API controller file data from the following code:\n\n" + input_filename + "\n==========[Begin C# API controller file]==========\n" + controller_contents + "\n==========[End C# API controller file]==========\nNow, please provide the extracted API controller file data in JSON format."
     response = query_llm(prompt, kwarg_opts={"schema": schema})
     output_filename = os.path.join(parent_dir, "outputs", ".".join(input_filename.split(".")[:-1]) + ".json")
     with open(output_filename, "w") as f:

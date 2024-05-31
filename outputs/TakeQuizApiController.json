@@ -1,212 +1,135 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
-                {
-                    "name": "TakeQuizApiController",
-                    "type": "class",
-                    "description": "An API controller for Take Quiz functionality in the CodedenimWebApp application."
-                },
-                {
-                    "name": "_db",
-                    "type": "variable",
-                    "description": "An instance of ApplicationDbContext."
-                },
-                {
-                    "name": "_startQuiz",
-                    "type": "variable",
-                    "description": "An instance of StartQuiz."
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "ShowNumbers",
-                    "type": "method",
-                    "description": "A method that retrieves and returns a list of question numbers for a given student.",
-                    "httpMethod": "GET",
-                    "route": "ShowNumbers"
-                },
-                {
-                    "name": "Menu",
-                    "type": "method",
-                    "description": "A method that retrieves and returns a list of question numbers for a given student and module.",
-                    "httpMethod": "GET",
-                    "route": "Menu"
-                },
-                {
-                    "name": "GetSelectSubject",
-                    "type": "method",
-                    "description": "A method that selects two random questions from the database for a given module and student, saves them, and optionally redirects the user to the exam.",
-                    "httpMethod": "GET",
-                    "route": "GetSelectSubject"
-                },
-                {
-                    "name": "Exam",
-                    "type": "method",
-                    "description": "A method that retrieves a single question for a given student and module based on its question number.",
-                    "httpMethod": "GET",
-                    "route": "Exam"
-                },
-                {
-                    "name": "ExamIndex",
-                    "type": "method",
-                    "description": "A method that handles the data passed in an action to the ExamIndex view.",
-                    "httpMethod": "POST",
-                    "route": "ExamIndex"
-                }
-            ],
-            "propertyDeclarations": [],
-            "constantDeclarations": [],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
-                {
-                    "name": "ShowNumbers",
-                    "type": "GET",
-                    "httpMethod": "GET",
-                    "route": "ShowNumbers"
-                },
-                {
-                    "name": "Menu",
-                    "type": "GET",
-                    "httpMethod": "GET",
-                    "route": "Menu"
-                },
-                {
-                    "name": "GetSelectSubject",
-                    "type": "GET",
-                    "httpMethod": "GET",
-                    "route": "GetSelectSubject"
-                },
-                {
-                    "name": "Exam",
-                    "type": "GET",
-                    "httpMethod": "GET",
-                    "route": "Exam"
-                },
-                {
-                    "name": "ExamIndex",
-                    "type": "POST",
-                    "httpMethod": "POST",
-                    "route": "ExamIndex"
-                }
-            ],
-            "routes": [
-                "ShowNumbers",
-                "Menu",
-                "GetSelectSubject",
-                "Exam",
-                "ExamIndex"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "db.StudentTopicQuizs.AsNoTracking().Where(x => x.StudentId.Equals(studentName)),",
-                    "type": "sequenced Query",
-                    "description": "Retrieves all StudentTopicQuiz records belonging to a specific student, ordered by question number.",
-                    "operationType": "Retrieve",
-                    "target": "db.StudentTopicQuizs"
-                },
-                {
-                    "name": "db.StudentTopicQuizs.AsNoTracking().Where(x => x.StudentId.Equals(studentId) && x.ModuleId.Equals(ModuleId)),",
-                    "type": "sequenced Query",
-                    "description": "Retrieves all StudentTopicQuiz records belonging to a specific student and module, ordered by question number.",
-                    "operationType": "Retrieve",
-                    "target": "db.StudentTopicQuizs"
-                },
-                {
-                    "name": "db.StudentTopicQuizs.Count(x => x.StudentId.Equals(studentId) && x.ModuleId.Equals(ModuleId)),",
-                    "type": "scalar Query",
-                    "description": "Counts the number of StudentTopicQuiz records belonging to a specific student and module.",
-                    "operationType": "Retrieve",
-                    "target": "db.StudentTopicQuizs"
-                },
-                {
-                    "name": "db.TopicQuizs.AsNoTracking().Where(x => x.ModuleId.Equals(ModuleId)).OrderBy(x => Guid.NewGuid()).Take(2).DistinctBy(d => d.TopicQuizId).ToList(),",
-                    "type": "sequenced Query",
-                    "description": "Seleccts two random TopicQuiz records with distinct question IDs from a specific module, ordered by a GUID.",
-                    "operationType": "Retrieve",
-                    "target": "db.TopicQuizs"
-                },
-                {
-                    "name": "db.StudentTopicQuizs.Add(studentQuestion),",
-                    "type": "insert",
-                    "description": "Adds a new StudentTopicQuiz record to the database.",
-                    "operationType": "Insert",
-                    "target": "db.StudentTopicQuizs"
-                },
-                {
-                    "name": "db.SaveChangesAsync(),",
-                    "type": "write",
-                    "description": "Saves the changes made to the datacontext to the database.",
-                    "operationType": "Update",
-                    "target": "db.SaveChanges()"
-                },
-                {
-                    "name": "db.StudentTopicQuizs.AsNoTracking().FirstOrDefaultAsync(s => s.StudentId.Equals(studentid) && s.ModuleId.Equals(ModuleId) && s.QuestionNumber.Equals(myno)),",
-                    "type": "sequenced Query",
-                    "description": "Retreives the single StudentTopicQuiz record for a specific student and module based on its question number.",
-                    "operationType": "Retrieve",
-                    "target": "db.StudentTopicQuizs"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [],
-            "validation": [
-                {
-                    "name": "ModelState.IsValid",
-                    "type": "predicate",
-                    "description": "Checks whether the data provided is valid.",
-                    "validationType": "Input"
-                }
-            ]
-        },
-        "configurationAndServices": {
-            "configurations": [
-                {
-                    "name": "ConfigureAuth",
-                    "type": "method",
-                    "description": "Applies authorization configuration.",
-                    "setting": "AppSettings"
-                },
-                {
-                    "name": "new Random()",
-                    "type": "constant",
-                    "description": "Creates a new instance of the Random class.",
-                    "setting": "ServiceInjection"
-                }
-            ]
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "using CodedenimWebApp.ViewModels",
-                    "type": "using directive",
-                    "description": "Imports the required namespace for the TakeQuizApiController's ViewModels.",
-                    "itemType": "UtilityMethod"
-                },
-                {
-                    "name": "using CodeninModel.Quiz",
-                    "type": "using directive",
-                    "description": "Imports the required namespace for the TakeQuizApiController's CodeninModel.Quiz.",
-                    "itemType": "UtilityMethod"
-                },
-                {
-                    "name": "using Microsoft.Ajax.Utilities",
-                    "type": "using directive",
-                    "description": "Imports the required namespace for Microsoft.Ajax.Utilities.",
-                    "itemType": "UtilityMethod"
-                },
-                {
-                    "name": "using System.Web.Mvc",
-                    "type": "using directive",
-                    "description": "Imports the required namespace for System.Web.Mvc.",
-                    "itemType": "UtilityMethod"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "ApplicationDbContext",
+                "type": "class"
+            },
+            {
+                "name": "StartQuiz",
+                "type": "class"
+            },
+            {
+                "name": "TakeQuizApiController",
+                "type": "class",
+                "description": "C# API controller for quiz taking"
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "ShowNumbers",
+                "type": "method",
+                "description": "Gets the question numbers for a specified student",
+                "httpMethod": "GET",
+                "route": "ShowNumbers",
+                "parameters": [
+                    {
+                        "name": "none",
+                        "type": "string",
+                        "description": "none specified"
+                    }
+                ]
+            },
+            {
+                "name": "Menu",
+                "type": "method",
+                "description": "Gets the questions based on student id and module id",
+                "httpMethod": "GET",
+                "route": "Menu",
+                "parameters": [
+                    {
+                        "name": "studentId",
+                        "type": "string",
+                        "description": "Student ID"
+                    },
+                    {
+                        "name": "ModuleId",
+                        "type": "int",
+                        "description": "Module ID for the quiz"
+                    }
+                ]
+            },
+            {
+                "name": "GetSelectSubject",
+                "type": "method",
+                "description": "Selects the subject based on ModuleId and email, then adds new quiz questions for the student if noq",
+                "httpMethod": "GET",
+                "route": "GetSelectSubject",
+                "parameters": [
+                    {
+                        "name": "ModuleId",
+                        "type": "int",
+                        "description": "Module ID for the quiz"
+                    },
+                    {
+                        "name": "email",
+                        "type": "string",
+                        "description": "Email for converting to student ID"
+                    }
+                ]
+            },
+            {
+                "name": "Exam",
+                "type": "method",
+                "description": "Returns the question based on question number, student id, and module id",
+                "httpMethod": "GET",
+                "route": "Exam",
+                "parameters": [
+                    {
+                        "name": "questionNo",
+                        "type": "int",
+                        "description": "Question number"
+                    },
+                    {
+                        "name": "ModuleId",
+                        "type": "int",
+                        "description": "Module ID for the quiz"
+                    },
+                    {
+                        "name": "studentid",
+                        "type": "string",
+                        "description": "Student ID"
+                    }
+                ]
+            },
+            {
+                "name": "ExamIndex",
+                "type": "method",
+                "description": "Saves the exam index data with student id, topic id, and score",
+                "httpMethod": "POST",
+                "route": "ExamIndex",
+                "parameters": [
+                    {
+                        "name": "studentId",
+                        "type": "string",
+                        "description": "Student ID"
+                    },
+                    {
+                        "name": "topicId",
+                        "type": "int",
+                        "description": "Topic ID for the exam"
+                    },
+                    {
+                        "name": "score",
+                        "type": "string",
+                        "description": "Score for the exam"
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": [
+            {
+                "name": "_db",
+                "type": "string",
+                "description": "Private _db instance of ApplicationDbContext",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_startQuiz",
+                "type": "string",
+                "description": "Private _startQuiz instance of StartQuiz",
+                "accessibility": "Private"
+            }
+        ]
     }
 ]

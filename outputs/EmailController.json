@@ -1,168 +1,78 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
-                {
-                    "name": "EmailController",
-                    "type": "class",
-                    "description": "API controller class for handling email operations"
-                },
-                {
-                    "name": "_sendGridEmailService",
-                    "type": "field",
-                    "description": "Private instance of SendGridEmailService object"
-                },
-                {
-                    "name": "SendGridEmailService",
-                    "type": "class",
-                    "description": "Class used for sending emails using SendGrid"
-                },
-                {
-                    "name": "EmailContract",
-                    "type": "class",
-                    "description": "Model class for an email object"
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "EmailController()",
-                    "type": "constructor",
-                    "description": "Default constructor for EmailController, initializes _sendGridEmailService object",
-                    "httpMethod": "GET",
-                    "route": "Send"
-                },
-                {
-                    "name": "Send()",
-                    "type": "method",
-                    "description": "Action method for rendering the email form view",
-                    "httpMethod": "GET",
-                    "route": "Send"
-                },
-                {
-                    "name": "Send(EmailContract emailContract)",
-                    "type": "method",
-                    "description": "Action method for handling email submission and sending email request using SendGrid",
-                    "httpMethod": "POST",
-                    "route": "Send"
-                }
-            ],
-            "propertyDeclarations": [
-                {
-                    "name": "ViewBag.Success",
-                    "type": "property",
-                    "description": "Property used for displaying success or failure status in the view",
-                    "accessibility": "Read-Only"
-                }
-            ],
-            "constantDeclarations": [],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
-                {
-                    "name": "GET",
-                    "type": "HTTP",
-                    "description": "Retrieve data from the server",
-                    "httpMethod": "GET",
-                    "route": "Send"
-                },
-                {
-                    "name": "POST",
-                    "type": "HTTP",
-                    "description": "Send data to the server",
-                    "httpMethod": "POST",
-                    "route": "Send"
-                }
-            ],
-            "routes": [
-                "EmailController/Send"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "ViewBag.Success = true",
-                    "type": "assignment",
-                    "description": "Assign value to ViewBag.Success for displaying success status in the view",
-                    "operationType": "Update",
-                    "target": "ViewBag.Success"
-                },
-                {
-                    "name": "ViewBag.Success = false",
-                    "type": "assignment",
-                    "description": "Assign value to ViewBag.Success for displaying error status in the view",
-                    "operationType": "Update",
-                    "target": "ViewBag.Success"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [
-                {
-                    "name": "catch (Exception)",
-                    "type": "try-catch statement",
-                    "description": "Catch any exceptions and handle errors",
-                    "mechanism": "CustomException"
-                }
-            ],
-            "validation": [
-                {
-                    "name": "if (!ModelState.IsValid)",
-                    "type": "conditional statement",
-                    "description": "Validate ModelState, if invalid, re-render the same view",
-                    "validationType": "Input"
-                }
-            ]
-        },
-        "configurationAndServices": {
-            "configurations": [
-                {
-                    "name": "_sendGridEmailService = new SendGridEmailService()",
-                    "type": "initialization",
-                    "description": "Initialize a new instance of SendGridEmailService",
-                    "setting": "ServiceInjection"
-                }
-            ]
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "using SendGrid.ASPSamples.Models",
-                    "type": "namespace",
-                    "description": "Import required namespaces",
-                    "itemType": "Logging"
-                },
-                {
-                    "name": "using System",
-                    "type": "namespace",
-                    "description": "Import required namespaces",
-                    "itemType": "Logging"
-                },
-                {
-                    "name": "using System.Collections.Generic",
-                    "type": "namespace",
-                    "description": "Import required namespaces",
-                    "itemType": "Logging"
-                },
-                {
-                    "name": "using System.Linq",
-                    "type": "namespace",
-                    "description": "Import required namespaces",
-                    "itemType": "Logging"
-                },
-                {
-                    "name": "using System.Web",
-                    "type": "namespace",
-                    "description": "Import required namespaces",
-                    "itemType": "Logging"
-                },
-                {
-                    "name": "using System.Web.Mvc",
-                    "type": "namespace",
-                    "description": "Import required namespaces",
-                    "itemType": "Logging"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "SendGrid.ASPSamples.Models",
+                "type": "class"
+            },
+            {
+                "name": "System",
+                "type": "class"
+            },
+            {
+                "name": "System.Collections.Generic",
+                "type": "class"
+            },
+            {
+                "name": "System.Linq",
+                "type": "class"
+            },
+            {
+                "name": "System.Web",
+                "type": "class"
+            },
+            {
+                "name": "System.Web.Mvc",
+                "type": "class"
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "EmailController",
+                "type": "constructor",
+                "description": "Constructor initializing _sendGridEmailService object.",
+                "httpMethod": "GET",
+                "route": "Null",
+                "parameters": [
+                    {
+                        "name": "None",
+                        "type": "string",
+                        "isOptional": false,
+                        "apiLocation": "body"
+                    }
+                ]
+            },
+            {
+                "name": "Send",
+                "type": "method",
+                "description": "Returns the view for email sending form.",
+                "httpMethod": "GET",
+                "route": "api/email",
+                "parameters": []
+            },
+            {
+                "name": "Send",
+                "type": "method",
+                "description": "Sends email using SendGridEmailService and redirects to the same view.",
+                "httpMethod": "POST",
+                "route": "api/email",
+                "parameters": [
+                    {
+                        "name": "emailContract",
+                        "type": "string",
+                        "isOptional": false,
+                        "apiLocation": "body"
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": [
+            {
+                "name": "_sendGridEmailService",
+                "type": "string",
+                "description": "SendGridEmailService object for sending emails.",
+                "accessibility": "Private"
+            }
+        ]
     }
 ]

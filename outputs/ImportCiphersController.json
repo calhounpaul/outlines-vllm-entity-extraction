@@ -1,174 +1,113 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
-                {
-                    "name": "ImportCiphersController",
-                    "type": "class",
-                    "description": "The ImportCiphersController class represents an API controller for importing ciphers into the system. It requires dependencies for various services and repositories. Its methods support importing ciphers for a user and for an organization, subject to certain conditions and permissions checks. The controller depends on Bit.Api, Bit.Core, and Microsoft.AspNetCore.Mvc."
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "PostImport",
-                    "type": "method",
-                    "description": "This method handles HTTP POST requests for cipher import. It takes an ImportCiphersRequestModel as a parameter, checks the global settings, validates the data and throws a BadRequestException if the data limit is exceeded. It then creates cipher and folder objects from the request data and calls the ICipherService.ImportCiphersAsync method to import the ciphers.",
-                    "httpMethod": "POST",
-                    "route": "/ciphers/import"
-                },
-                {
-                    "name": "PostImportOrganization",
-                    "type": "method",
-                    "description": "This method handles HTTP POST requests for cipher import within an organization. It takes an organization ID, an ImportOrganizationCiphersRequestModel as a parameter, checks the global settings, validates the data and throws a BadRequestException if the data limit is exceeded. It then uses the CheckOrgImportPermission method to verify if the user is allowed to perform the import, creates collection and cipher objects from the request data, and calls the ICipherService.ImportCiphersAsync method to import the ciphers.",
-                    "httpMethod": "POST",
-                    "route": "/ciphers/import-organization"
-                },
-                {
-                    "name": "CheckOrgImportPermission",
-                    "type": "method",
-                    "description": "This private method checks if a user has the necessary permissions to import ciphers into an organization. It first checks if the user has the AccessToImportExport permission for the organization, and if not, it checks if the user can create collections. If the user is trying to import into existing collections, it verifies if the user has the necessary permissions for those collections. If the user is not authorized, it throws a NotFoundException.",
-                    "httpMethod": "POST",
-                    "route": ""
-                }
-            ],
-            "propertyDeclarations": [
-                {
-                    "name": "_cipherService",
-                    "type": "ICipherService",
-                    "description": "A dependency for the ICipherService, used to perform operations related to ciphers.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "_userService",
-                    "type": "IUserService",
-                    "description": "A dependency for the IUserService, used to retrieve user data and get the proper user ID.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "_currentContext",
-                    "type": "ICurrentContext",
-                    "description": "A dependency for the ICurrentContext, used to access the current context.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "_logger",
-                    "type": "ILogger<ImportCiphersController>",
-                    "description": "A dependency for the ILogger, used for logging.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "_globalSettings",
-                    "type": "GlobalSettings",
-                    "description": "A dependency for the GlobalSettings, used to access global settings.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "_collectionRepository",
-                    "type": "ICollectionRepository",
-                    "description": "A dependency for the ICollectionRepository, used to retrieve collection data from the repository.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "_authorizationService",
-                    "type": "IAuthorizationService",
-                    "description": "A dependency for the IAuthorizationService, used to perform authorization checks.",
-                    "accessibility": "Private"
-                }
-            ],
-            "constantDeclarations": [],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
-                {
-                    "name": "PostImport",
-                    "type": "POST",
-                    "httpMethod": "POST",
-                    "route": "/ciphers/import"
-                },
-                {
-                    "name": "PostImportOrganization",
-                    "type": "POST",
-                    "httpMethod": "POST",
-                    "route": "/ciphers/import-organization"
-                }
-            ],
-            "routes": [
-                "/ciphers",
-                "/ciphers/import",
-                "/ciphers/import-organization"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "importCiphers",
-                    "type": "ImportCiphersRequestModel",
-                    "operationType": "Insert",
-                    "target": "ImportCiphersController"
-                },
-                {
-                    "name": "organizationId",
-                    "type": "string",
-                    "operationType": "Insert",
-                    "target": "ImportCiphersController"
-                },
-                {
-                    "name": "ImportOrganizationCiphersRequestModel",
-                    "type": "ImportOrganizationCiphersRequestModel",
-                    "operationType": "Insert",
-                    "target": "ImportCiphersController"
-                },
-                {
-                    "name": "cipherData",
-                    "type": "ImportCiphersRequestModel",
-                    "operationType": "Insert",
-                    "target": "ImportCiphersController"
-                },
-                {
-                    "name": "collectionData",
-                    "type": "ImportOrganizationCiphersRequestModel",
-                    "operationType": "Insert",
-                    "target": "ImportCiphersController"
-                },
-                {
-                    "name": "collectionRelationships",
-                    "type": "ImportOrganizationCiphersRequestModel",
-                    "operationType": "Insert",
-                    "target": "ImportCiphersController"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [
-                {
-                    "name": "BadRequestException",
-                    "type": "BadRequestException",
-                    "description": "Thrown when the user tries to import too much data at once.",
-                    "mechanism": "CustomException"
-                }
-            ],
-            "validation": [
-                {
-                    "name": "DataLimitCheck",
-                    "type": "ConditionalCheck",
-                    "description": "Checks if the data limit has been exceeded for cipher import requests.",
-                    "validationType": "Input"
-                }
-            ]
-        },
-        "configurationAndServices": {
-            "configurations": []
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "Imports",
-                    "type": "Using declarations",
-                    "description": "A set of using declarations at the beginning of the ImportCiphersController class, specifying required namespaces.",
-                    "itemType": "Logging"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "ICipherService",
+                "type": "interface"
+            },
+            {
+                "name": "IUserService",
+                "type": "interface"
+            },
+            {
+                "name": "ICurrentContext",
+                "type": "interface"
+            },
+            {
+                "name": "ILogger<ImportCiphersController>",
+                "type": "interface"
+            },
+            {
+                "name": "GlobalSettings",
+                "type": "class"
+            },
+            {
+                "name": "ICollectionRepository",
+                "type": "interface"
+            },
+            {
+                "name": "IAuthorizationService",
+                "type": "interface"
+            },
+            {
+                "name": "IOrganizationRepository",
+                "type": "interface"
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "PostImport",
+                "type": "method",
+                "description": "Import ciphers",
+                "httpMethod": "POST",
+                "route": "import",
+                "parameters": [
+                    {
+                        "name": "model",
+                        "type": "string",
+                        "description": "ImportCiphersRequestModel",
+                        "isOptional": false
+                    }
+                ]
+            },
+            {
+                "name": "PostImport",
+                "type": "method",
+                "description": "Import ciphers for organization",
+                "httpMethod": "POST",
+                "route": "import-organization",
+                "parameters": [
+                    {
+                        "name": "organizationId",
+                        "type": "string",
+                        "description": "Organization ID",
+                        "isOptional": false
+                    },
+                    {
+                        "name": "model",
+                        "type": "string",
+                        "description": "ImportOrganizationCiphersRequestModel",
+                        "isOptional": false
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": [
+            {
+                "name": "_cipherService",
+                "type": "string",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_userService",
+                "type": "string",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_currentContext",
+                "type": "string",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_logger",
+                "type": "string",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_globalSettings",
+                "type": "string",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_collectionRepository",
+                "type": "string",
+                "accessibility": "Private"
+            },
+            {
+                "name": "_authorizationService",
+                "type": "string",
+                "accessibility": "Private"
+            }
+        ]
     }
 ]

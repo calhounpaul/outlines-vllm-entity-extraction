@@ -1,245 +1,95 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
-                {
-                    "name": "FileController",
-                    "type": "controller",
-                    "description": "This is a C# API controller class for the File upload and manipulation functions."
-                },
-                {
-                    "name": "CustomApiController",
-                    "type": "baseClass",
-                    "description": "A base controller class for the API controller with common properties and methods"
-                },
-                {
-                    "name": "DTO_WEB_BaiViet",
-                    "type": "model",
-                    "description": "Data Transfer Object for web article"
-                },
-                {
-                    "name": "DTO_CUS_DOC_File",
-                    "type": "model",
-                    "description": "Data Transfer Object for custom document file"
-                },
-                {
-                    "name": "BS_CUS_DOC_File",
-                    "type": "businessClass",
-                    "description": "Business logic class for custom document file operations"
-                },
-                {
-                    "name": "UserManager",
-                    "type": "class",
-                    "description": "A class for handling user identity"
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "Post_UploadImage",
-                    "type": "apiMethod",
-                    "description": "This API method handles uploading images. It receives a base64 encoded image or a file upload, processes it, and saves it to the server.",
-                    "httpMethod": "POST",
-                    "route": "/api/CUS/FILE/UploadImage"
-                },
-                {
-                    "name": "Post_UploadAvatar",
-                    "type": "apiMethod",
-                    "description": "This API method handles the uploading and renaming of staff avatar images.",
-                    "httpMethod": "POST",
-                    "route": "/api/CUS/FILE/UploadAvatar/{code}"
-                },
-                {
-                    "name": "Post_FileUpload",
-                    "type": "apiMethod",
-                    "description": "This API method handles the uploading and processing of custom document files.",
-                    "httpMethod": "POST",
-                    "route": "/api/CUS/FILE/FileUpload/{id:int}"
-                },
-                {
-                    "name": "Get_NhanSu",
-                    "type": "apiMethod",
-                    "description": "This API method generates a dynamic Excel report with staff information.",
-                    "httpMethod": "GET",
-                    "route": "/api/CUS/FILE/NhanSu"
-                },
-                {
-                    "name": "Get_BaoCaoNangSuatKhoaHoc",
-                    "type": "apiMethod",
-                    "description": "This API method generates a dynamic Excel report with course progress reports.",
-                    "httpMethod": "GET",
-                    "route": "/api/CUS/FILE/BaoCaoNangSuatKhoaHoc"
-                },
-                {
-                    "name": "Get_HoiNghiHoiThao",
-                    "type": "apiMethod",
-                    "description": "This API method generates a dynamic Excel report with conference and seminar registration information.",
-                    "httpMethod": "GET",
-                    "route": "/api/CUS/FILE/HoiNghiHoiThao"
-                },
-                {
-                    "name": "DownloadFile",
-                    "type": "apiMethod",
-                    "description": "This API method serves as a utility method to download files from the server.",
-                    "httpMethod": "GET",
-                    "route": "/api/CUS/FILE/Download"
-                },
-                {
-                    "name": "Post_UploadImageCustom",
-                    "type": "apiMethod",
-                    "description": "This API method allows custom image upload to the server.",
-                    "httpMethod": "POST",
-                    "route": "/api/CUS/FILE/UploadImageCustom"
-                }
-            ],
-            "propertyDeclarations": [
-                {
-                    "name": "uploadPath",
-                    "type": "string",
-                    "description": "A constant that represents the file upload path for images.",
-                    "accessibility": "Public"
-                },
-                {
-                    "name": "db",
-                    "type": "DataContext",
-                    "description": "An instance of the database context for entity framework.",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "UserManager",
-                    "type": "UserManager",
-                    "description": "An instance of the user manager class for handling user identity.",
-                    "accessibility": "Private"
-                }
-            ],
-            "constantDeclarations": [
-                {
-                    "name": "PartnerID",
-                    "type": "int",
-                    "description": "Represents the partner ID for database operations."
-                },
-                {
-                    "name": "Username",
-                    "type": "string",
-                    "description": "Represents the current user name."
-                }
-            ],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
-                {
-                    "name": "POST",
-                    "type": "apiMethod",
-                    "description": "The HTTP POST method is used for creating or updating resources.",
-                    "httpMethod": "POST",
-                    "route": "api/CUS/FILE"
-                },
-                {
-                    "name": "GET",
-                    "type": "apiMethod",
-                    "description": "The HTTP GET method is used for retrieving resources.",
-                    "httpMethod": "GET",
-                    "route": "api/CUS/FILE"
-                }
-            ],
-            "routes": [
-                "/api/CUS/FILE",
-                "/api/CUS/FILE/UploadImage",
-                "/api/CUS/FILE/UploadAvatar/{code}",
-                "/api/CUS/FILE/FileUpload/{id:int}",
-                "/api/CUS/FILE/NhanSu",
-                "/api/CUS/FILE/BaoCaoNangSuatKhoaHoc",
-                "/api/CUS/FILE/HoiNghiHoiThao",
-                "/api/CUS/FILE/Download",
-                "/api/CUS/FILE/UploadImageCustom"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "SaveAs",
-                    "type": "method",
-                    "description": "This method saves the content of the posted file to a specific path.",
-                    "operationType": "Insert",
-                    "target": "file"
-                },
-                {
-                    "name": "Save",
-                    "type": "method",
-                    "description": "This method saves the Excel report created dynamically in the API controller.",
-                    "operationType": "Update",
-                    "target": "Excel report"
-                },
-                {
-                    "name": "Delete",
-                    "type": "method",
-                    "description": "This method deletes existing files before uploading new ones.",
-                    "operationType": "Delete",
-                    "target": "existing file"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [
-                {
-                    "name": "BadRequest",
-                    "type": "method",
-                    "description": "This method handles the HTTP 400 Bad Request error, typically used when the request sent by the client is malformed or truncated.",
-                    "mechanism": "CustomException"
-                },
-                {
-                    "name": "Conflict",
-                    "type": "method",
-                    "description": "This method handles the HTTP 409 Conflict error, typically raised when the request cannot be fulfilled at present, such as a conflict in state transitions.",
-                    "mechanism": "CustomException"
-                }
-            ],
-            "validation": [
-                {
-                    "name": "ModelState",
-                    "type": "class",
-                    "description": "A class that contains the model-state validation errors.",
-                    "validationType": "Input"
-                },
-                {
-                    "name": "id",
-                    "type": "int",
-                    "description": "An integer value that represents the unique ID of a resource.",
-                    "validationType": "Input"
-                },
-                {
-                    "name": "code",
-                    "type": "string",
-                    "description": "A string value that represents a unique staff code for avatar upload.",
-                    "validationType": "Input"
-                }
-            ]
-        },
-        "configurationAndServices": {
-            "configurations": [
-                {
-                    "name": "System.Web.HttpContext.Current.Request",
-                    "type": "property",
-                    "description": "A property that represents the current HTTP request in the API controller.",
-                    "setting": "AppSettings"
-                }
-            ]
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "FileController",
-                    "type": "controller",
-                    "description": "A C# API controller class for handling file operations.",
-                    "itemType": "HelperFunction"
-                },
-                {
-                    "name": "GetTemplateWorkbook",
-                    "type": "method",
-                    "description": "A method for generating an Excel report from a template.",
-                    "itemType": "HelperFunction"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "DTO_WEB_BaiViet",
+                "type": "class"
+            },
+            {
+                "name": "DTO_CUS_DOC_File",
+                "type": "class"
+            },
+            {
+                "name": "BS_CUS_DOC_File",
+                "type": "class"
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "Post_UploadImage",
+                "type": "method",
+                "httpMethod": "POST",
+                "route": "/api/CUS/FILE/UploadImage",
+                "parameters": [
+                    {
+                        "name": "httpRequest",
+                        "type": "string",
+                        "isOptional": false,
+                        "apiLocation": "body"
+                    }
+                ]
+            },
+            {
+                "name": "Post_UploadAvatar",
+                "type": "method",
+                "httpMethod": "POST",
+                "route": "/api/CUS/FILE/UploadAvatar/{code}",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "type": "string",
+                        "isOptional": false,
+                        "apiLocation": "path"
+                    }
+                ]
+            },
+            {
+                "name": "Post_FileUpload",
+                "type": "method",
+                "httpMethod": "POST",
+                "route": "/api/CUS/FILE/FileUpload/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "type": "int",
+                        "isOptional": false,
+                        "apiLocation": "path"
+                    }
+                ]
+            },
+            {
+                "name": "Get_NhanSu",
+                "type": "method",
+                "httpMethod": "GET",
+                "route": "/api/CUS/FILE/NhanSu"
+            },
+            {
+                "name": "Get_BaoCaoNangSuatKhoaHoc",
+                "type": "method",
+                "httpMethod": "GET",
+                "route": "/api/CUS/FILE/BaoCaoNangSuatKhoaHoc"
+            },
+            {
+                "name": "Get_HoiNghiHoiThao",
+                "type": "method",
+                "httpMethod": "GET",
+                "route": "/api/CUS/FILE/HoiNghiHoiThao"
+            },
+            {
+                "name": "Post_UploadImageCustom",
+                "type": "method",
+                "httpMethod": "POST",
+                "route": "/api/CUS/FILE/UploadImageCustom",
+                "parameters": [
+                    {
+                        "name": "httpRequest",
+                        "type": "string",
+                        "isOptional": false,
+                        "apiLocation": "body"
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": []
     }
 ]

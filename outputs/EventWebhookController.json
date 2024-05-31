@@ -1,105 +1,50 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
+        "original_string": "{\n  \"entityDeclarations\": [\n    {\n      \"name\": \"EventWebhookController\",\n      \"type\": \"class\",\n      \"description\": \"API controller for handling event webhooks.\"\n    }\n  ],\n  \"methodDeclarations\": [\n    {\n      \"name\": \"Index\",\n      \"type\": \"method\",\n      \"description\": \"GET : Handles the index page request.\",\n      \"httpMethod\": \"GET\",\n      \"route\": \"/\",\n      \"parameters\": [\n        {\n          \"name\": \"context\",\n          \"type\": \"bool\",\n          \"isOptional\": false\n        }\n      ]\n    },\n    {\n      \"name\": \"Events\",\n      \"type\": \"method\",\n      \"description\": \"POST : Handles the event webhook handler.\",\n      \"httpMethod\": \"POST\",\n      \"route\": \"/events\",\n      \"parameters\": [\n        {\n          \"name\": \"context\",\n          \"type\": \"bool\",\n          \"isOptional\": false\n        }\n      ]\n    }\n  ],\n  \"propertyDeclarations\": [\n    {\n      \"name\": \"EventParser\",\n      \"type\": \"int\",\n      \"description\": \"Instance of the EventParser class.\"\n    ,\n      \"accessibility\": \"Private\"\n    }\n  ]",
+        "repaired_json": {
+            "entityDeclarations": [
                 {
                     "name": "EventWebhookController",
-                    "type": "Class",
-                    "description": "The EventWebhookController class, inheriting from Controller, to process webhook events for the specified API endpoints via the ASP.NET Core MVC framework."
-                },
-                {
-                    "name": "Controller",
-                    "type": "Class",
-                    "description": "The base class of the EventWebhookController class, provided by the ASP.NET Core MVC framework."
+                    "type": "class",
+                    "description": "API controller for handling event webhooks."
                 }
             ],
             "methodDeclarations": [
                 {
                     "name": "Index",
-                    "type": "Method",
-                    "description": "An HTTP GET method that returns the Index view of the current context.",
+                    "type": "method",
+                    "description": "GET : Handles the index page request.",
                     "httpMethod": "GET",
-                    "route": "/"
+                    "route": "/",
+                    "parameters": [
+                        {
+                            "name": "context",
+                            "type": "bool",
+                            "isOptional": false
+                        }
+                    ]
                 },
                 {
                     "name": "Events",
-                    "type": "Method",
-                    "description": "An HTTP POST method that asynchronously processes the incoming request body using EventParser and returns an OK response.",
+                    "type": "method",
+                    "description": "POST : Handles the event webhook handler.",
                     "httpMethod": "POST",
-                    "route": "/events"
+                    "route": "/events",
+                    "parameters": [
+                        {
+                            "name": "context",
+                            "type": "bool",
+                            "isOptional": false
+                        }
+                    ]
                 }
             ],
-            "propertyDeclarations": [],
-            "constantDeclarations": [],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
+            "propertyDeclarations": [
                 {
-                    "name": "GET",
-                    "type": "Method",
-                    "description": "HTTP GET",
-                    "httpMethod": "GET",
-                    "route": "/"
-                },
-                {
-                    "name": "POST",
-                    "type": "Method",
-                    "description": "HTTP POST",
-                    "httpMethod": "POST",
-                    "route": "/events"
-                }
-            ],
-            "routes": [
-                "/",
-                "/events"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "await EventParser.ParseAsync(Request.Body)",
-                    "type": "MethodCall",
-                    "description": "Asynchronously parsing the incoming request body using EventParser and returning an IEnumerable<Event> collection.",
-                    "operationType": "Retrieve",
-                    "target": "EventParser.ParseAsync(Request.Body)"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [
-                {
-                    "name": "return Ok()",
-                    "type": "MethodCall",
-                    "description": "Returning an OK response from the Events method.",
-                    "mechanism": "CustomException"
-                }
-            ],
-            "validation": []
-        },
-        "configurationAndServices": {
-            "configurations": [
-                {
-                    "name": "[Route(\"/\")]",
-                    "type": "Attribute",
-                    "description": "Configures the controller route for the index page to be '/'.",
-                    "setting": "EnvironmentVariables"
-                },
-                {
-                    "name": "[Route(\"/events\")]",
-                    "type": "Attribute",
-                    "description": "Configures the controller route for the events processing to be '/events'.",
-                    "setting": "EnvironmentVariables"
-                }
-            ]
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "Any other class-level imports (using statements)",
-                    "type": "Imports",
-                    "description": "Imports for the necessary namespaces to make the program work: EventWebhook.Models, EventWebhook.Parser, Microsoft.AspNetCore.Mvc, System.Collections.Generic, System.Threading.Tasks.",
-                    "itemType": "Logging"
+                    "name": "EventParser",
+                    "type": "int",
+                    "description": "Instance of the EventParser class.",
+                    "accessibility": "Private"
                 }
             ]
         }

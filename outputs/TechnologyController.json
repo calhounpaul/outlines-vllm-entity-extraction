@@ -1,286 +1,95 @@
 [
     {
-        "declarationsAndDefinitions": {
-            "classDeclarations": [
-                {
-                    "name": "TechnologyController",
-                    "type": "public class",
-                    "description": "C# API controller for handling Technology operations"
-                },
-                {
-                    "name": "ApplicationDbContext",
-                    "type": "using LiveHackDb.Models",
-                    "description": "Database context"
-                },
-                {
-                    "name": "IdentityExtensions",
-                    "type": "using",
-                    "description": "Extensions for ASP.NET Identity"
-                },
-                {
-                    "name": "Technology",
-                    "type": "using LiveHack.Models.ViewModels",
-                    "description": "View model for Technology"
-                },
-                {
-                    "name": "TechnologyBindingModel",
-                    "type": "using LiveHack.Models.BindingModels",
-                    "description": "Binding model for Technology creation"
-                },
-                {
-                    "name": "Message",
-                    "type": "using System.Collections.Generic",
-                    "description": "Model for chat messages"
-                },
-                {
-                    "name": "User",
-                    "type": "using System.Web.Http",
-                    "description": "AspNetCore User"
-                },
-                {
-                    "name": "LiveHackHub",
-                    "type": "using LiveHack.Hubs",
-                    "description": "Hub for LiveHack"
-                },
-                {
-                    "name": "HttpContextBase",
-                    "type": "using System.Web",
-                    "description": "Base Http context"
-                }
-            ],
-            "methodDeclarations": [
-                {
-                    "name": "GetTechnologies",
-                    "type": "public IHttpActionResult GetTechnologies()",
-                    "description": "GET /api/Technology\nWhen you access /api/Technology, this method retrieves all the technologies and returns them as a list in JSON format",
-                    "httpMethod": "GET",
-                    "route": "api/Technology/"
-                },
-                {
-                    "name": "PostCreate",
-                    "type": "public async Task<IHttpActionResult> PostCreate(TechnologyBindingModel inputTech)",
-                    "description": "POST /api/Technology\nWhen you POST data to /api/Technology, this method creates a new technology and adds it to the database. It also sends a message to the LiveHackHub to notify other clients of the new technology.",
-                    "httpMethod": "POST",
-                    "route": "api/Technology/"
-                }
-            ],
-            "propertyDeclarations": [
-                {
-                    "name": "db",
-                    "type": "using (var db = new ApplicationDbContext())",
-                    "description": "Instance of ApplicationDbContext for database operations",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "userId",
-                    "type": "var userId = IdentityExtensions.GetUserId(RequestContext.Principal.Identity);",
-                    "description": "User's ID",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "user",
-                    "type": "var user = db.Users.SingleOrDefault(u => u.Id == userId);",
-                    "description": "User object",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "technologies",
-                    "type": "var technologies = db.Chats.OfType<Technology>().OrderBy(a => a.Name).ToList().Select(a => a.ToViewModel());",
-                    "description": "List of technologies converted to ViewModel",
-                    "accessibility": "Private"
-                },
-                {
-                    "name": "inputTech",
-                    "type": "TechnologyBindingModel inputTech",
-                    "description": "Input model for creating a technology",
-                    "accessibility": "Public"
-                },
-                {
-                    "name": "technology",
-                    "type": "var technology = new Technology()",
-                    "description": "New technology object",
-                    "accessibility": "Private"
-                }
-            ],
-            "constantDeclarations": [
-                {
-                    "name": "RecordsNotFound",
-                    "type": "return Unauthorized();",
-                    "description": "Constant to denote that no records found"
-                },
-                {
-                    "name": "ExistingRecord",
-                    "type": "return BadRequest(\"A technology with this name already exists.\");",
-                    "description": "Constant to denote that a record with the same name already exists"
-                },
-                {
-                    "name": "CreatedNewTechnology",
-                    "type": "return Created(\"/api/Technology/",
-                    "description": "Constant used for the Created response with the new technology's ID"
-                }
-            ],
-            "enumDeclarations": []
-        },
-        "httpMethodsAndRoutes": {
-            "methods": [
-                {
-                    "name": "GET",
-                    "type": "",
-                    "description": "",
-                    "httpMethod": "GET",
-                    "route": "api/Technology/"
-                },
-                {
-                    "name": "POST",
-                    "type": "",
-                    "description": "",
-                    "httpMethod": "POST",
-                    "route": "api/Technology/"
-                }
-            ],
-            "routes": [
-                "api/Technology/"
-            ]
-        },
-        "dataAccessAndManipulation": {
-            "dataOperations": [
-                {
-                    "name": "ConnectToDatabase",
-                    "type": "using (var db = new ApplicationDbContext())",
-                    "description": "Creates a new instance of ApplicationDbContext",
-                    "operationType": "Insert",
-                    "target": "db"
-                },
-                {
-                    "name": "GetUser",
-                    "type": "var user = db.Users.SingleOrDefault(u => u.Id == userId);",
-                    "description": "Retrieves the user object from the database with the given user ID",
-                    "operationType": "Retrieve",
-                    "target": "user"
-                },
-                {
-                    "name": "CheckIfTechnologyExists",
-                    "type": "if (db.Chats.OfType<Technology>().SingleOrDefault(t => t.Name.ToLower() == inputTech.Name.ToLower()) != null)",
-                    "description": "Checks if a technology with the given name already exists in the database",
-                    "operationType": "Retrieve",
-                    "target": "db.Chats.OfType<Technology>().SingleOrDefault(t => t.Name.ToLower() == inputTech.Name.ToLower())"
-                },
-                {
-                    "name": "CreateAndSaveTechnology",
-                    "type": "var technology = new Technology()\ndb.Chats.Add(technology);\nawait db.SaveChangesAsync();",
-                    "description": "Creates a new technology object, adds it to the database and saves changes",
-                    "operationType": "Insert",
-                    "target": "technology"
-                },
-                {
-                    "name": "SendNotifications",
-                    "type": "LiveHackHub.AddAllToGroup(technology.Id.ToString());\nLiveHackHub.SendNewTechnology(technology);",
-                    "description": "Sends a message to the LiveHackHub notifying other clients of the new technology",
-                    "operationType": "Update",
-                    "target": "LiveHackHub"
-                },
-                {
-                    "name": "ReturnTechnologyToJSON",
-                    "type": "return Ok(technologies);\nTechnologies are converted to the ViewModel before being returned",
-                    "description": "Converts the technology list to the ViewModel format and returns it as JSON",
-                    "operationType": "Retrieve",
-                    "target": "technologies"
-                },
-                {
-                    "name": "ReturnErrorMessageAsJSON",
-                    "type": "return BadRequest(\"A technology with this name already exists.\");",
-                    "description": "Returns error messages as JSON",
-                    "operationType": "Retrieve",
-                    "target": "\"A technology with this name already exists.\""
-                },
-                {
-                    "name": "ReturnNewTechnologyAsJSON",
-                    "type": "return Created(\"/api/Technology/",
-                    "description": "Creates a JSON response for a new technology with its ID",
-                    "operationType": "Insert",
-                    "target": "technology.ToViewModel()"
-                }
-            ]
-        },
-        "errorHandlingAndValidation": {
-            "errorHandling": [
-                {
-                    "name": "UserNotFound",
-                    "type": "if (user == null)",
-                    "description": "Handles the case when the user is not found in the database",
-                    "mechanism": "Logging"
-                },
-                {
-                    "name": "ExistingTechName",
-                    "type": "if (db.Chats.OfType<Technology>().SingleOrDefault(t => t.Name.ToLower() == inputTech.Name.ToLower()) != null)",
-                    "description": "Handles the case when a technology with the same name already exists in the database",
-                    "mechanism": "Logging"
-                },
-                {
-                    "name": "InvalidInput",
-                    "type": "return BadRequest();",
-                    "description": "Handles the case when invalid input is provided",
-                    "mechanism": "Logging"
-                }
-            ],
-            "validation": [
-                {
-                    "name": "CheckIfUserExists",
-                    "type": "if (user == null)",
-                    "description": "Checks if the user exists in the database",
-                    "validationType": "Input"
-                },
-                {
-                    "name": "CheckIfTechnologyNotExist",
-                    "type": "if (db.Chats.OfType<Technology>().SingleOrDefault(t => t.Name.ToLower() == inputTech.Name.ToLower()) == null)",
-                    "description": "Checks if no technology in the database with the provided name",
-                    "validationType": "Input"
-                },
-                {
-                    "name": "CheckIfNotNull",
-                    "type": "if (technology != null)",
-                    "description": "Checks if the new technology object is not null after creation",
-                    "validationType": "Input"
-                }
-            ]
-        },
-        "configurationAndServices": {
-            "configurations": [
-                {
-                    "name": "RoutePrefix",
-                    "type": "[RoutePrefix(\"api/Technology\")]",
-                    "description": "Sets the route prefix for the TechnologyController to api/Technology",
-                    "setting": "ServiceInjection"
-                },
-                {
-                    "name": "Authorize",
-                    "type": "[Authorize]",
-                    "description": "Requires the user to be authenticated and authorized to access the API",
-                    "setting": "ServiceInjection"
-                }
-            ]
-        },
-        "miscellaneous": {
-            "items": [
-                {
-                    "name": "BaseContext",
-                    "type": "HttpContextBase",
-                    "description": "Base context class used in the API",
-                    "itemType": "Documentation"
-                },
-                {
-                    "name": "UsingLibraries",
-                    "type": "LiveHackDb.Models\nLiveHack.Models.ViewModels\nLiveHack.Models.BindingModels\nMicrosoft.AspNet.Identity\nSystem\nSystem.Collections.Generic\nSystem.Linq\nSystem.Net\nSystem.Net.Http\nSystem.Threading.Tasks\nSystem.Web\nLiveHack.Hubs",
-                    "description": "List of namespaces used in the API",
-                    "itemType": "Documentation"
-                },
-                {
-                    "name": "RepositoryPattern",
-                    "type": "Through the use of the Repository pattern, the code makes the TechnologyController more testable, maintainable, and less coupled to the concrete Database implementation",
-                    "description": "Explanation of the Repository pattern usage",
-                    "itemType": "Documentation"
-                }
-            ]
-        }
+        "entityDeclarations": [
+            {
+                "name": "TechnologyController",
+                "type": "class",
+                "description": "C# API controller for the Technology resource"
+            },
+            {
+                "name": "ApplicationDbContext",
+                "type": "class",
+                "description": "Database context class"
+            },
+            {
+                "name": "User",
+                "type": "class",
+                "description": "User model class"
+            },
+            {
+                "name": "Chat",
+                "type": "class",
+                "description": "Base class for Technology and other chat types"
+            },
+            {
+                "name": "Technology",
+                "type": "class",
+                "description": "Technology model class and derived from Chat"
+            },
+            {
+                "name": "TechnologyBindingModel",
+                "type": "class",
+                "description": "Data binding model for Technology creation"
+            },
+            {
+                "name": "TechnologyViewModel",
+                "type": "class",
+                "description": "View model for Technology object"
+            },
+            {
+                "name": "Message",
+                "type": "class",
+                "description": "Message model class"
+            },
+            {
+                "name": "LiveHackHub",
+                "type": "class",
+                "description": "Hub class for real-time updates and communication"
+            }
+        ],
+        "methodDeclarations": [
+            {
+                "name": "GetTechnologies",
+                "type": "method",
+                "description": "Retrieves a list of all technologies ordered by name",
+                "httpMethod": "GET",
+                "route": "api/Technology",
+                "parameters": [
+                    {
+                        "name": "none",
+                        "type": "string",
+                        "description": "The empty route represents the base route"
+                    }
+                ]
+            },
+            {
+                "name": "PostCreate",
+                "type": "method",
+                "description": "Creates a new technology",
+                "httpMethod": "POST",
+                "route": "api/Technology",
+                "parameters": [
+                    {
+                        "name": "inputTech",
+                        "type": "string",
+                        "description": "Input data to create a new technology"
+                    }
+                ]
+            }
+        ],
+        "propertyDeclarations": [
+            {
+                "name": "RoutePrefix",
+                "type": "string",
+                "description": "The controller route prefix",
+                "accessibility": "Public"
+            },
+            {
+                "name": "Authorize",
+                "type": "string",
+                "description": "Authorization attribute for secure access",
+                "accessibility": "Public"
+            }
+        ]
     }
 ]

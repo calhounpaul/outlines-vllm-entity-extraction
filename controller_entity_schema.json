@@ -1,262 +1,165 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "C# Controller File Entity Extraction Schema",
-    "type": "object",
-    "definitions": {
-      "entity": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the entity."},
-          "type": {"type": "string", "description": "The type of the entity."},
-          "description": {"type": "string", "description": "A brief description of the entity."}
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Extracted Data from a C# Controller File",
+  "type": "object",
+  "definitions": {
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the parameter.",
+          "regex": "^[a-zA-Z0-9_]*$"
         },
-        "required": ["name", "type"]
+        "type": {
+          "type": "string",
+          "enum": ["int", "string", "bool", "decimal", "date", "time", "datetime", "other"],
+          "description": "The data type or kind of the parameter."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the parameter.",
+          "regex": "^[a-zA-Z0-9][\\s\\S]*\\.$",
+          "maxLength": 100,
+          "minLength": 10
+        },
+        "isOptional": {
+          "type": "boolean",
+          "description": "Indicates whether the parameter is optional or not."
+        },
+        "apiLocation": {
+          "type": "string",
+          "enum": ["path", "query", "header", "body", "other"],
+          "description": "The location of the parameter in the API request."
+        }
       },
-      "method": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the method."},
-          "type": {"type": "string", "description": "The type of the method."},
-          "description": {"type": "string", "description": "A brief description of the method."},
-          "httpMethod": {
-            "type": "string",
-            "enum": ["GET", "POST", "PUT", "DELETE"],
-            "description": "The HTTP method used by the action."
-          },
-          "route": {"type": "string", "description": "The route associated with the method."}
-        },
-        "required": ["name", "type", "httpMethod", "route"]
-      },
-      "propertyDeclaration": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the property."},
-          "type": {"type": "string", "description": "The type of the property."},
-          "description": {"type": "string", "description": "A brief description of the property."},
-          "accessibility": {
-            "type": "string",
-            "enum": ["Public", "Private", "Read-Only"],
-            "description": "The accessibility of the property."
-          }
-        },
-        "required": ["name", "type", "accessibility"]
-      },
-      "dataOperation": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the data operation."},
-          "type": {"type": "string", "description": "The type of the data operation."},
-          "description": {"type": "string", "description": "A brief description of the data operation."},
-          "operationType": {
-            "type": "string",
-            "enum": ["Retrieve", "Insert", "Update", "Delete"],
-            "description": "The type of data operation."
-          },
-          "target": {"type": "string", "description": "The target entity of the data operation."}
-        },
-        "required": ["name", "type", "operationType", "target"]
-      },
-      "errorHandling": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the error handling mechanism."},
-          "type": {"type": "string", "description": "The type of the error handling mechanism."},
-          "description": {"type": "string", "description": "A brief description of the error handling mechanism."},
-          "mechanism": {
-            "type": "string",
-            "enum": ["Try-Catch", "CustomException", "Logging"],
-            "description": "The type of error handling mechanism."
-          }
-        },
-        "required": ["name", "type", "mechanism"]
-      },
-      "validation": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the validation procedure."},
-          "type": {"type": "string", "description": "The type of the validation procedure."},
-          "description": {"type": "string", "description": "A brief description of the validation procedure."},
-          "validationType": {
-            "type": "string",
-            "enum": ["Input", "Response"],
-            "description": "The type of validation being performed."
-          }
-        },
-        "required": ["name", "type", "validationType"]
-      },
-      "configuration": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the configuration setting."},
-          "type": {"type": "string", "description": "The type of the configuration setting."},
-          "description": {"type": "string", "description": "A brief description of the configuration setting."},
-          "setting": {
-            "type": "string",
-            "enum": ["ServiceInjection", "AppSettings", "EnvironmentVariables"],
-            "description": "The type of configuration setting."
-          }
-        },
-        "required": ["name", "type", "setting"]
-      },
-      "miscellaneous": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the miscellaneous item."},
-          "type": {"type": "string", "description": "The type of the miscellaneous item."},
-          "description": {"type": "string", "description": "A brief description of the miscellaneous item."},
-          "itemType": {
-            "type": "string",
-            "enum": ["UtilityMethod", "HelperFunction", "Documentation", "Logging", "EventHandling"],
-            "description": "The type of miscellaneous item."
-          }
-        },
-        "required": ["name", "type", "itemType"]
-      },
-      "classDeclaration": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the class."},
-          "type": {"type": "string", "description": "The type of the class."},
-          "description": {"type": "string", "description": "A brief description of the class."}
-        },
-        "required": ["name", "type"]
-      },
-      "constantDeclaration": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the constant."},
-          "type": {"type": "string", "description": "The type of the constant."},
-          "description": {"type": "string", "description": "A brief description of the constant."}
-        },
-        "required": ["name", "type"]
-      },
-      "enumDeclaration": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string", "description": "The name of the enum."},
-          "type": {"type": "string", "description": "The type of the enum."},
-          "description": {"type": "string", "description": "A brief description of the enum."}
-        },
-        "required": ["name", "type"]
-      }
+      "required": ["name", "type"]
     },
-    "properties": {
-      "declarationsAndDefinitions": {
-        "type": "object",
-        "properties": {
-          "classDeclarations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/classDeclaration"},
-            "description": "List of class declarations with their types."
-          },
-          "methodDeclarations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/method"},
-            "description": "List of method declarations with their types and routes."
-          },
-          "propertyDeclarations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/propertyDeclaration"},
-            "description": "List of property declarations with their accessibility."
-          },
-          "constantDeclarations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/constantDeclaration"},
-            "description": "List of constant declarations with their types."
-          },
-          "enumDeclarations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/enumDeclaration"},
-            "description": "List of enum declarations with their types."
-          }
+    "entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the entity.",
+          "regex": "^[a-zA-Z0-9_]*$"
         },
-        "required": [
-          "classDeclarations",
-          "methodDeclarations",
-          "propertyDeclarations",
-          "constantDeclarations",
-          "enumDeclarations"
-        ],
-        "description": "Declarations and definitions of classes, methods, properties, constants, and enums."
-      },
-      "httpMethodsAndRoutes": {
-        "type": "object",
-        "properties": {
-          "methods": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/method"},
-            "description": "List of HTTP methods and their routes."
-          },
-          "routes": {
-            "type": "array",
-            "items": {"type": "string"},
-            "description": "List of routes defined in the controller."
-          }
+        "type": {
+          "type": "string",
+          "enum": ["class", "interface", "enum", "struct", "delegate", "other"],
+          "description": "The category or kind of the entity."
         },
-        "required": ["methods", "routes"],
-        "description": "HTTP methods and routes used in the controller."
+        "description": {
+          "type": "string",
+          "description": "A brief description of the entity.",
+          "regex": "^[a-zA-Z0-9][\\s\\S]*\\.$",
+          "maxLength": 100,
+          "minLength": 10
+        }
       },
-      "dataAccessAndManipulation": {
-        "type": "object",
-        "properties": {
-          "dataOperations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/dataOperation"},
-            "description": "List of data operations including retrieval, insertion, update, and deletion."
-          }
+      "required": ["name", "type"]
+    },
+    "method": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the method as it appears in the code, without parentheses or other symbols denoting parameters or other information about the method.",
+          "regex": "^[a-zA-Z0-9_]*$"
         },
-        "required": ["dataOperations"],
-        "description": "Data access and manipulation operations performed by the controller."
-      },
-      "errorHandlingAndValidation": {
-        "type": "object",
-        "properties": {
-          "errorHandling": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/errorHandling"},
-            "description": "List of error handling mechanisms used in the controller."
-          },
-          "validation": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/validation"},
-            "description": "List of validation procedures including input and response validation."
-          }
+        "type": {
+          "type": "string",
+          "enum": ["method", "constructor", "destructor", "other"],
+          "description": "The type of the method."
         },
-        "required": ["errorHandling", "validation"],
-        "description": "Error handling and validation procedures used in the controller."
-      },
-      "configurationAndServices": {
-        "type": "object",
-        "properties": {
-          "configurations": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/configuration"},
-            "description": "List of configuration settings and service injections."
-          }
+        "description": {
+          "type": "string",
+          "description": "A brief description of the method.",
+          "regex": "^[a-zA-Z0-9][\\s\\S]*\\.$",
+          "maxLength": 100,
+          "minLength": 10
         },
-        "required": ["configurations"],
-        "description": "Configuration settings and services used in the controller."
-      },
-      "miscellaneous": {
-        "type": "object",
-        "properties": {
+        "httpMethod": {
+          "type": "string",
+          "enum": ["GET", "POST", "PUT", "DELETE", "OTHER"],
+          "description": "The HTTP method used by the action."
+        },
+        "route": {
+          "type": "string",
+          "description": "The route associated with the method. It should start with a forward slash (/) and may contain path parameters in curly braces ({}).",
+          "regex": "^/([a-zA-Z0-9_.-]+|{[a-zA-Z0-9_.-]+})*(?!.*['\"]).*$",
+          "minLength": 1
+        },        
+        "parameters": {
+          "type": "array",
           "items": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/miscellaneous"},
-            "description": "List of miscellaneous items including utility methods, documentation, and event handling."
-          }
-        },
-        "required": ["items"],
-        "description": "Miscellaneous items related to the controller."
-      }
+            "$ref": "#/definitions/parameter"
+          },
+          "description": "The parameters of the method. This array may be empty, or not present.",
+          "minItems": 0
+        }
+      },
+      "required": ["name", "type", "httpMethod", "route"]
     },
-    "required": [
-      "declarationsAndDefinitions",
-      "httpMethodsAndRoutes",
-      "dataAccessAndManipulation",
-      "errorHandlingAndValidation",
-      "configurationAndServices",
-      "miscellaneous"
-    ],
-    "description": "Schema for extracting and organizing C# controller file entities."
+    "propertyDeclaration": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the property.",
+          "regex": "^[a-zA-Z0-9_]*$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["int", "string", "bool", "decimal", "date", "time", "datetime", "other"],
+          "description": "The data type or kind of the property.",
+          "regex": "^[a-zA-Z0-9_]*$"
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the property.",
+          "regex": "^[a-zA-Z0-9][\\s\\S]*\\.$",
+          "maxLength": 100,
+          "minLength": 10
+        },
+        "accessibility": {
+          "type": "string",
+          "enum": ["Public", "Private", "Protected", "Internal", "Other"],
+          "description": "The accessibility of the property."
+        },
+        "isStatic": {
+          "type": "boolean",
+          "description": "Indicates whether the property is static or not."
+        },
+        "isReadOnly": {
+          "type": "boolean",
+          "description": "Indicates whether the property is read-only or not."
+        }
+      },
+      "required": ["name", "type", "accessibility"]
+    }
+  },
+  "properties": {
+    "entityDeclarations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entity"
+      },
+      "description": "Declarations of entities (classes, interfaces, etc.) extracted from the code."
+    },
+    "methodDeclarations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/method"
+      },
+      "description": "Declarations of methods (functions, procedures, etc.) extracted from the code."
+    },
+    "propertyDeclarations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/propertyDeclaration"
+      },
+      "description": "Declarations of properties (variables, constants, etc.) extracted from the code."
+    }
+  },
+  "required": ["entityDeclarations", "methodDeclarations", "propertyDeclarations"]
 }

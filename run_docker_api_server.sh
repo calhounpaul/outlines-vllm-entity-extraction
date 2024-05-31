@@ -13,11 +13,13 @@ docker run --rm -it \
     -p 8000:8000 \
     --env "HUGGING_FACE_HUB_TOKEN=$HF_TOKEN" \
     --ipc=host \
+    -m 90g \
     outlines_vllm_server \
     --dtype="float16" \
-    --model solidrust/Mistral-7B-Instruct-v0.3-AWQ
+    --max-model-len 32000 \
+    --model mistralai/Mistral-7B-Instruct-v0.3
+#    --model solidrust/Mistral-7B-Instruct-v0.3-AWQ
 #    --model neuralmagic/Mistral-7B-Instruct-v0.3-GPTQ-4bit
-#    --model mistralai/Mistral-7B-Instruct-v0.3
 #    --model NousResearch/Hermes-2-Theta-Llama-3-8B
 #    --model nvidia/Llama3-ChatQA-1.5-8B
 #    --model casperhansen/llama-3-8b-instruct-awqd
